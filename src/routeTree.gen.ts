@@ -15,6 +15,8 @@ import { createFileRoute } from '@tanstack/react-router'
 import { Route as rootRoute } from './routes/__root'
 import { Route as TodoImport } from './routes/todo'
 import { Route as AccountImport } from './routes/account'
+import { Route as MelopeeEmploiCodeurDashboardImport } from './routes/melopee/emploi/codeur/dashboard'
+import { Route as MelopeeEmploiCodeurLogementMEL001Import } from './routes/melopee/emploi/codeur/logement/MEL-001'
 
 // Create Virtual Routes
 
@@ -42,6 +44,18 @@ const IndexLazyRoute = IndexLazyImport.update({
   path: '/',
   getParentRoute: () => rootRoute,
 } as any).lazy(() => import('./routes/index.lazy').then((d) => d.Route))
+
+const MelopeeEmploiCodeurDashboardRoute =
+  MelopeeEmploiCodeurDashboardImport.update({
+    path: '/melopee/emploi/codeur/dashboard',
+    getParentRoute: () => rootRoute,
+  } as any)
+
+const MelopeeEmploiCodeurLogementMEL001Route =
+  MelopeeEmploiCodeurLogementMEL001Import.update({
+    path: '/melopee/emploi/codeur/logement/MEL-001',
+    getParentRoute: () => rootRoute,
+  } as any)
 
 // Populate the FileRoutesByPath interface
 
@@ -75,6 +89,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof MuiLazyImport
       parentRoute: typeof rootRoute
     }
+    '/melopee/emploi/codeur/dashboard': {
+      id: '/melopee/emploi/codeur/dashboard'
+      path: '/melopee/emploi/codeur/dashboard'
+      fullPath: '/melopee/emploi/codeur/dashboard'
+      preLoaderRoute: typeof MelopeeEmploiCodeurDashboardImport
+      parentRoute: typeof rootRoute
+    }
+    '/melopee/emploi/codeur/logement/MEL-001': {
+      id: '/melopee/emploi/codeur/logement/MEL-001'
+      path: '/melopee/emploi/codeur/logement/MEL-001'
+      fullPath: '/melopee/emploi/codeur/logement/MEL-001'
+      preLoaderRoute: typeof MelopeeEmploiCodeurLogementMEL001Import
+      parentRoute: typeof rootRoute
+    }
   }
 }
 
@@ -85,6 +113,8 @@ export const routeTree = rootRoute.addChildren({
   AccountRoute,
   TodoRoute,
   MuiLazyRoute,
+  MelopeeEmploiCodeurDashboardRoute,
+  MelopeeEmploiCodeurLogementMEL001Route,
 })
 
 /* prettier-ignore-end */
