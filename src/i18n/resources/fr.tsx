@@ -8,18 +8,18 @@ export const translations: Translations<"fr"> = {
         login: "Se connecter",
         logout: "Se déconnecter",
         "my account": "Mon compte",
-        "service title": "Séminaire du développement",
+        "service title": "Plateforme de codification manuelle",
         "operator logo alt": "Insee, mesurer pour comprendre",
-        "page title home": "Acceuil",
-        "page title mui": "Jouer avec Mui",
-        "page title todo": "Application liste de tâches"
+        "page title home": "Accueil"
+        // "page title mui": "Jouer avec Mui",
+        // "page title todo": "Application liste de tâches"
     },
     Footer: {
-        "operator logo alt": "Insee, mesurer pour comprendre",
-        "content description": `
-      Ce site est une démonstration de l'utilisation de Vite + TypeScript + React + react-dsfr.
-      Il est destiné à être utilisé comme base pour un les projets de développement a l'Insee.
-    `
+        "operator logo alt": "Insee, mesurer pour comprendre"
+        //     "content description": `
+        //   Ce site est une démonstration de l'utilisation de Vite + TypeScript + React + react-dsfr.
+        //   Il est destiné à être utilisé comme base pour un les projets de développement a l'Insee.
+        // `
     },
     Todo: {
         edit: "Modifier",
@@ -29,8 +29,17 @@ export const translations: Translations<"fr"> = {
         "add a todo": "Ajouter une tâche",
         validate: "Valider"
     },
+    ChoosePlatform: {
+        "choose platform": "Choix de la plateforme de codification",
+        "select survey": "Sélectionnez une enquête",
+        job: "Emploi",
+        training: "Formation",
+        "choice of access mode": "Choix du mode d'accès",
+        coder: "Codeur",
+        expert: "Expert"
+    },
     Index: {
-        welcome: ({ name }) => <>Bienvenue {name === undefined ? "" : <strong>{name}</strong>}!</>,
+        welcome: ({ name }) => <>Bienvenue {name === undefined ? "" : <strong>{name}</strong>}</>,
         "video aria label": "Video de démonstration de react-dsfr"
     }
     /* spell-checker: enable */

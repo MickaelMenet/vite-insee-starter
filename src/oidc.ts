@@ -22,7 +22,7 @@ export const { OidcProvider, useOidc, prOidc } = issuerUri
           mockedTokens: {
               decodedIdToken: {
                   sub: "123",
-                  preferred_username: "john doe"
+                  preferred_username: "Menet Mickaël"
               } satisfies z.infer<typeof decodedIdTokenSchema>
           }
       });

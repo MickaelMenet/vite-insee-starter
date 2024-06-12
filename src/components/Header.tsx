@@ -68,7 +68,7 @@ export function Header() {
                           } as const
                       ])
             ]}
-            serviceTagline="Vite + TypeScript + React + react-dsfr"
+            // serviceTagline="Vite + TypeScript + React + react-dsfr"
             serviceTitle={t("service title")}
             operatorLogo={{
                 alt: t("operator logo alt"),
@@ -78,9 +78,9 @@ export function Header() {
             navigation={(() =>
                 (
                     [
-                        ["/", t("page title home")],
-                        ["/mui", t("page title mui")],
-                        ["/todo", t("page title todo")]
+                        ["/", t("page title home")]
+                        // ["/mui", t("page title mui")],
+                        // ["/todo", t("page title todo")]
                     ] as const
                 ).map(([to, label]) => ({
                     text: label,

@@ -8,18 +8,18 @@ export const translations: Translations<"en"> = {
         login: "Log in",
         logout: "Log out",
         "my account": "My account",
-        "service title": "Development Seminar",
+        "service title": "Manual coding platform",
         "operator logo alt": "Insee, measure to understand",
-        "page title home": "Home",
-        "page title mui": "Playing with Mui",
-        "page title todo": "Task List Application"
+        "page title home": "Home"
+        // "page title mui": "Playing with Mui",
+        // "page title todo": "Task List Application"
     },
     Footer: {
-        "operator logo alt": "Insee, measure to understand",
-        "content description": `
-      This site is a demonstration of the use of Vite + TypeScript + React + react-dsfr.
-      It is intended to be used as a base for development projects at Insee.
-    `
+        "operator logo alt": "Insee, measure to understand"
+        //     "content description": `
+        //   This site is a demonstration of the use of Vite + TypeScript + React + react-dsfr.
+        //   It is intended to be used as a base for development projects at Insee.
+        // `
     },
     Todo: {
         edit: "Edit",
@@ -29,8 +29,17 @@ export const translations: Translations<"en"> = {
         "add a todo": "Add a task",
         validate: "Validate"
     },
+    ChoosePlatform: {
+        "choose platform": "Choice of coding platform",
+        "select survey": "Select a survey",
+        job: "Job",
+        training: "Training",
+        "choice of access mode": "Choice of access mode",
+        coder: "Coder",
+        expert: "Expert"
+    },
     Index: {
-        welcome: ({ name }) => <>Welcome {name === undefined ? "" : <strong>{name}</strong>}!</>,
+        welcome: ({ name }) => <>Welcome {name === undefined ? "" : <strong>{name}</strong>}</>,
         "video aria label": "Demonstration video of react-dsfr"
     }
     /* spell-checker: enable */

@@ -14,6 +14,7 @@ export type ComponentKey =
     | import("components/Footer").I18n
     | import("components/TodoApp/Todo").I18n
     | import("components/TodoApp/AddTodo").I18n
+    | import("components/ChoosePlatform").I18n
     | import("routes/index.lazy").I18n;
 
 export type Translations<L extends Language> = GenericTranslations<
