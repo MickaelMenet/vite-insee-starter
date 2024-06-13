@@ -13,10 +13,15 @@ import { createFileRoute } from '@tanstack/react-router'
 // Import Routes
 
 import { Route as rootRoute } from './routes/__root'
-import { Route as TodoImport } from './routes/todo'
 import { Route as AccountImport } from './routes/account'
-import { Route as MelopeeEmploiCodeurDashboardImport } from './routes/melopee/emploi/codeur/dashboard'
-import { Route as MelopeeEmploiCodeurLogementMEL001Import } from './routes/melopee/emploi/codeur/logement/MEL-001'
+import { Route as EnqueteFormationExpertDashboardImport } from './routes/$enquete/formation/expert/dashboard'
+import { Route as EnqueteFormationCodeurDashboardImport } from './routes/$enquete/formation/codeur/dashboard'
+import { Route as EnqueteEmploiExpertDashboardImport } from './routes/$enquete/emploi/expert/dashboard'
+import { Route as EnqueteEmploiCodeurDashboardImport } from './routes/$enquete/emploi/codeur/dashboard'
+import { Route as EnqueteFormationExpertLogementLogementImport } from './routes/$enquete/formation/expert/$logement/$logement'
+import { Route as EnqueteFormationCodeurLogementLogementImport } from './routes/$enquete/formation/codeur/$logement/$logement'
+import { Route as EnqueteEmploiExpertLogementLogementImport } from './routes/$enquete/emploi/expert/$logement/$logement'
+import { Route as EnqueteEmploiCodeurLogementLogementImport } from './routes/$enquete/emploi/codeur/$logement/$logement'
 
 // Create Virtual Routes
 
@@ -30,11 +35,6 @@ const MuiLazyRoute = MuiLazyImport.update({
   getParentRoute: () => rootRoute,
 } as any).lazy(() => import('./routes/mui.lazy').then((d) => d.Route))
 
-const TodoRoute = TodoImport.update({
-  path: '/todo',
-  getParentRoute: () => rootRoute,
-} as any)
-
 const AccountRoute = AccountImport.update({
   path: '/account',
   getParentRoute: () => rootRoute,
@@ -45,15 +45,51 @@ const IndexLazyRoute = IndexLazyImport.update({
   getParentRoute: () => rootRoute,
 } as any).lazy(() => import('./routes/index.lazy').then((d) => d.Route))
 
-const MelopeeEmploiCodeurDashboardRoute =
-  MelopeeEmploiCodeurDashboardImport.update({
-    path: '/melopee/emploi/codeur/dashboard',
+const EnqueteFormationExpertDashboardRoute =
+  EnqueteFormationExpertDashboardImport.update({
+    path: '/$enquete/formation/expert/dashboard',
     getParentRoute: () => rootRoute,
   } as any)
 
-const MelopeeEmploiCodeurLogementMEL001Route =
-  MelopeeEmploiCodeurLogementMEL001Import.update({
-    path: '/melopee/emploi/codeur/logement/MEL-001',
+const EnqueteFormationCodeurDashboardRoute =
+  EnqueteFormationCodeurDashboardImport.update({
+    path: '/$enquete/formation/codeur/dashboard',
+    getParentRoute: () => rootRoute,
+  } as any)
+
+const EnqueteEmploiExpertDashboardRoute =
+  EnqueteEmploiExpertDashboardImport.update({
+    path: '/$enquete/emploi/expert/dashboard',
+    getParentRoute: () => rootRoute,
+  } as any)
+
+const EnqueteEmploiCodeurDashboardRoute =
+  EnqueteEmploiCodeurDashboardImport.update({
+    path: '/$enquete/emploi/codeur/dashboard',
+    getParentRoute: () => rootRoute,
+  } as any)
+
+const EnqueteFormationExpertLogementLogementRoute =
+  EnqueteFormationExpertLogementLogementImport.update({
+    path: '/$enquete/formation/expert/$logement/$logement',
+    getParentRoute: () => rootRoute,
+  } as any)
+
+const EnqueteFormationCodeurLogementLogementRoute =
+  EnqueteFormationCodeurLogementLogementImport.update({
+    path: '/$enquete/formation/codeur/$logement/$logement',
+    getParentRoute: () => rootRoute,
+  } as any)
+
+const EnqueteEmploiExpertLogementLogementRoute =
+  EnqueteEmploiExpertLogementLogementImport.update({
+    path: '/$enquete/emploi/expert/$logement/$logement',
+    getParentRoute: () => rootRoute,
+  } as any)
+
+const EnqueteEmploiCodeurLogementLogementRoute =
+  EnqueteEmploiCodeurLogementLogementImport.update({
+    path: '/$enquete/emploi/codeur/$logement/$logement',
     getParentRoute: () => rootRoute,
   } as any)
 
@@ -75,13 +111,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AccountImport
       parentRoute: typeof rootRoute
     }
-    '/todo': {
-      id: '/todo'
-      path: '/todo'
-      fullPath: '/todo'
-      preLoaderRoute: typeof TodoImport
-      parentRoute: typeof rootRoute
-    }
     '/mui': {
       id: '/mui'
       path: '/mui'
@@ -89,18 +118,60 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof MuiLazyImport
       parentRoute: typeof rootRoute
     }
-    '/melopee/emploi/codeur/dashboard': {
-      id: '/melopee/emploi/codeur/dashboard'
-      path: '/melopee/emploi/codeur/dashboard'
-      fullPath: '/melopee/emploi/codeur/dashboard'
-      preLoaderRoute: typeof MelopeeEmploiCodeurDashboardImport
+    '/$enquete/emploi/codeur/dashboard': {
+      id: '/$enquete/emploi/codeur/dashboard'
+      path: '/$enquete/emploi/codeur/dashboard'
+      fullPath: '/$enquete/emploi/codeur/dashboard'
+      preLoaderRoute: typeof EnqueteEmploiCodeurDashboardImport
       parentRoute: typeof rootRoute
     }
-    '/melopee/emploi/codeur/logement/MEL-001': {
-      id: '/melopee/emploi/codeur/logement/MEL-001'
-      path: '/melopee/emploi/codeur/logement/MEL-001'
-      fullPath: '/melopee/emploi/codeur/logement/MEL-001'
-      preLoaderRoute: typeof MelopeeEmploiCodeurLogementMEL001Import
+    '/$enquete/emploi/expert/dashboard': {
+      id: '/$enquete/emploi/expert/dashboard'
+      path: '/$enquete/emploi/expert/dashboard'
+      fullPath: '/$enquete/emploi/expert/dashboard'
+      preLoaderRoute: typeof EnqueteEmploiExpertDashboardImport
+      parentRoute: typeof rootRoute
+    }
+    '/$enquete/formation/codeur/dashboard': {
+      id: '/$enquete/formation/codeur/dashboard'
+      path: '/$enquete/formation/codeur/dashboard'
+      fullPath: '/$enquete/formation/codeur/dashboard'
+      preLoaderRoute: typeof EnqueteFormationCodeurDashboardImport
+      parentRoute: typeof rootRoute
+    }
+    '/$enquete/formation/expert/dashboard': {
+      id: '/$enquete/formation/expert/dashboard'
+      path: '/$enquete/formation/expert/dashboard'
+      fullPath: '/$enquete/formation/expert/dashboard'
+      preLoaderRoute: typeof EnqueteFormationExpertDashboardImport
+      parentRoute: typeof rootRoute
+    }
+    '/$enquete/emploi/codeur/$logement/$logement': {
+      id: '/$enquete/emploi/codeur/$logement/$logement'
+      path: '/$enquete/emploi/codeur/$logement/$logement'
+      fullPath: '/$enquete/emploi/codeur/$logement/$logement'
+      preLoaderRoute: typeof EnqueteEmploiCodeurLogementLogementImport
+      parentRoute: typeof rootRoute
+    }
+    '/$enquete/emploi/expert/$logement/$logement': {
+      id: '/$enquete/emploi/expert/$logement/$logement'
+      path: '/$enquete/emploi/expert/$logement/$logement'
+      fullPath: '/$enquete/emploi/expert/$logement/$logement'
+      preLoaderRoute: typeof EnqueteEmploiExpertLogementLogementImport
+      parentRoute: typeof rootRoute
+    }
+    '/$enquete/formation/codeur/$logement/$logement': {
+      id: '/$enquete/formation/codeur/$logement/$logement'
+      path: '/$enquete/formation/codeur/$logement/$logement'
+      fullPath: '/$enquete/formation/codeur/$logement/$logement'
+      preLoaderRoute: typeof EnqueteFormationCodeurLogementLogementImport
+      parentRoute: typeof rootRoute
+    }
+    '/$enquete/formation/expert/$logement/$logement': {
+      id: '/$enquete/formation/expert/$logement/$logement'
+      path: '/$enquete/formation/expert/$logement/$logement'
+      fullPath: '/$enquete/formation/expert/$logement/$logement'
+      preLoaderRoute: typeof EnqueteFormationExpertLogementLogementImport
       parentRoute: typeof rootRoute
     }
   }
@@ -111,10 +182,15 @@ declare module '@tanstack/react-router' {
 export const routeTree = rootRoute.addChildren({
   IndexLazyRoute,
   AccountRoute,
-  TodoRoute,
   MuiLazyRoute,
-  MelopeeEmploiCodeurDashboardRoute,
-  MelopeeEmploiCodeurLogementMEL001Route,
+  EnqueteEmploiCodeurDashboardRoute,
+  EnqueteEmploiExpertDashboardRoute,
+  EnqueteFormationCodeurDashboardRoute,
+  EnqueteFormationExpertDashboardRoute,
+  EnqueteEmploiCodeurLogementLogementRoute,
+  EnqueteEmploiExpertLogementLogementRoute,
+  EnqueteFormationCodeurLogementLogementRoute,
+  EnqueteFormationExpertLogementLogementRoute,
 })
 
 /* prettier-ignore-end */

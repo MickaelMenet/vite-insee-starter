@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { CallOut } from "@codegouvfr/react-dsfr/CallOut";
 
-export const Route = createFileRoute("/melopee/emploi/codeur/logement/MEL-001")({
+export const Route = createFileRoute("/$enquete/emploi/codeur/$logement/$logement")({
     component: () => {
         const data = {
             logement: "MEL-001",
