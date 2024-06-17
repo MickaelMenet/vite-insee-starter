@@ -3,10 +3,11 @@ import { Table } from "@codegouvfr/react-dsfr/Table";
 
 export const Route = createFileRoute("/$enquete/emploi/expert/dashboard")({
     component: () => {
+        // eslint-disable-next-line react-hooks/rules-of-hooks
         const navigate = useNavigate();
 
-        const handleRowClick = housingId => {
-            navigate(`/melopee/emploi/codeur/logement/${housingId}`);
+        const handleRowClick = (housingId: string) => {
+            navigate({ to: `/$enquete/emploi/expert/logement/${housingId}` });
         };
 
         const data = [
@@ -40,7 +41,7 @@ export const Route = createFileRoute("/$enquete/emploi/expert/dashboard")({
                 fixed
                 data={data.map(row => [
                     <Link
-                        to={`/melopee/emploi/codeur/logement/${row[2]}`}
+                        to={`/$enquete/emploi/expert/logement/${row[2]}`}
                         onClick={() => handleRowClick(row[2])}
                         key={row[2]}
                     >

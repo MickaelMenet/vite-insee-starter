@@ -36,10 +36,15 @@ export const translations: Translations<"en"> = {
         training: "Training",
         "choice of access mode": "Choice of access mode",
         coder: "Coder",
-        expert: "Expert"
+        expert: "Expert",
+        back: "Back",
+        platform: "to the platform",
+        "of survey": "of the survey :"
     },
     Index: {
-        welcome: ({ name }) => <>Welcome {name === undefined ? "" : <strong>{name}</strong>}</>,
+        welcome: ({ name }: { name: string }) => (
+            <>Welcome {name === undefined ? "" : <strong>{name}</strong>}</>
+        ),
         "video aria label": "Demonstration video of react-dsfr"
     }
     /* spell-checker: enable */
