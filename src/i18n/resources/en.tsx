@@ -38,8 +38,8 @@ export const translations: Translations<"en"> = {
         coder: "Coder",
         expert: "Expert",
         back: "Back",
-        platform: "to the platform",
-        "of survey": "of the survey :"
+        "of survey": "of the survey :",
+        platform: "Platform"
     },
     Index: {
         welcome: ({ name }: { name: string }) => (

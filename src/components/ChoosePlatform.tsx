@@ -78,7 +78,7 @@ export function ChoosePlatform({ className }: Props) {
                 </>
             ) : (
                 <>
-                    <h3>{`${t("choice of access mode")} ${t("choose platform")} ${selectedType} ${t("select survey")}  ${value}`}</h3>
+                    <h3>{`${t("choice of access mode")} ${t("choose platform")} ${selectedType} ${t("of survey")}  ${value}`}</h3>
                     <div style={{ marginTop: "40px" }}>
                         <Button
                             iconId="ri-code-line"
@@ -114,6 +114,7 @@ const { i18n } = declareComponentKeys<
     | "coder"
     | "expert"
     | "back"
+    | "of survey"
 >()("ChoosePlatform");
 
 export type I18n = typeof i18n;
