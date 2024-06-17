@@ -18,10 +18,10 @@ import { Route as EnqueteFormationExpertDashboardImport } from './routes/$enquet
 import { Route as EnqueteFormationCodeurDashboardImport } from './routes/$enquete/formation/codeur/dashboard'
 import { Route as EnqueteEmploiExpertDashboardImport } from './routes/$enquete/emploi/expert/dashboard'
 import { Route as EnqueteEmploiCodeurDashboardImport } from './routes/$enquete/emploi/codeur/dashboard'
-import { Route as EnqueteFormationExpertLogementLogementImport } from './routes/$enquete/formation/expert/$logement/$logement'
-import { Route as EnqueteFormationCodeurLogementLogementImport } from './routes/$enquete/formation/codeur/$logement/$logement'
-import { Route as EnqueteEmploiExpertLogementLogementImport } from './routes/$enquete/emploi/expert/$logement/$logement'
-import { Route as EnqueteEmploiCodeurLogementLogementImport } from './routes/$enquete/emploi/codeur/$logement/$logement'
+import { Route as EnqueteFormationExpertLogementLogementImport } from './routes/$enquete/formation/expert/logement/$logement'
+import { Route as EnqueteFormationCodeurLogementLogementImport } from './routes/$enquete/formation/codeur/logement/$logement'
+import { Route as EnqueteEmploiExpertLogementLogementImport } from './routes/$enquete/emploi/expert/logement/$logement'
+import { Route as EnqueteEmploiCodeurLogementLogementImport } from './routes/$enquete/emploi/codeur/logement/$logement'
 
 // Create Virtual Routes
 
