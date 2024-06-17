@@ -5,7 +5,7 @@ import PersonDetails from "../../../../../components/logement/PersonDetails";
 import LogementDetails from "../../../../../components/logement/LogementDetails";
 import { CSSProperties } from "react";
 
-export const Route = createFileRoute("/$enquete/formation/expert/$logement/$logement")({
+export const Route = createFileRoute("/$enquete/formation/expert/logement/$logement")({
     component: () => (
         <div style={styles.container as CSSProperties}>
             <div style={styles.calloutContainer}>
