@@ -51,7 +51,7 @@ export const styles = {
     bgCircle: {
         height: "128px",
         width: "128px",
-        backgroundColor: "#87AFC7",
+        backgroundColor: "#B0CFE1",
         zIndex: 1,
         position: "absolute" as const,
         top: "-75px",
