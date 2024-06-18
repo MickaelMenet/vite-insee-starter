@@ -10,7 +10,7 @@ export default function ProfessionPrincipaleContent() {
 
     return (
         <Box>
-            <Typography variant="h6" gutterBottom>
+            <Typography color="primary" variant="h6" gutterBottom>
                 Détails de la Profession Principale
             </Typography>
             <Grid container spacing={2}>

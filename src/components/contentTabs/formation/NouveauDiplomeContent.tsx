@@ -10,7 +10,7 @@ export default function NouveauDiplomeContent() {
 
     return (
         <Box>
-            <Typography mb={4} variant="h6" gutterBottom>
+            <Typography color="primary" mb={4} variant="h6" gutterBottom>
                 Nouveau Diplôme
             </Typography>
             <Grid container spacing={2}>

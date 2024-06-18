@@ -10,7 +10,7 @@ export default function FormationRecenteContent() {
 
     return (
         <Box>
-            <Typography mb={4} variant="h6" gutterBottom>
+            <Typography color="primary" mb={4} variant="h6" gutterBottom>
                 Formation Suivie Récemment
             </Typography>
             <Grid container spacing={2}>

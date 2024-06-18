@@ -10,7 +10,7 @@ const ProfessionPereContent = () => {
 
     return (
         <Box>
-            <Typography mb={4} variant="h6" gutterBottom>
+            <Typography color="primary" mb={4} variant="h6" gutterBottom>
                 Profession du Père
             </Typography>
             <Grid container spacing={2}>

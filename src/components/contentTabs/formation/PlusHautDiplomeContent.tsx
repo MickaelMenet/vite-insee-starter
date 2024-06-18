@@ -10,7 +10,7 @@ export default function PlusHautDiplomeContent() {
 
     return (
         <Box>
-            <Typography mb={4} variant="h6" gutterBottom>
+            <Typography color="primary" mb={4} variant="h6" gutterBottom>
                 Plus Haut Diplôme
             </Typography>
             <Grid container spacing={2}>
