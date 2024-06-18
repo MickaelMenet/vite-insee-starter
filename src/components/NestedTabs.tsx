@@ -1,0 +1,125 @@
+import React, { useState } from "react";
+import { Tabs, Tab, Box, Typography } from "@mui/material";
+
+const TabPanel = (props: { [x: string]: any; children: any; value: any; index: any }) => {
+    const { children, value, index, ...other } = props;
+
+    return (
+        <div
+            role="tabpanel"
+            hidden={value !== index}
+            id={`simple-tabpanel-${index}`}
+            aria-labelledby={`simple-tab-${index}`}
+            {...other}
+        >
+            {value === index && (
+                <Box p={3} sx={{ width: "100%" }}>
+                    <Typography>{children}</Typography>
+                </Box>
+            )}
+        </div>
+    );
+};
+
+const SubTabs = ({
+    value,
+    index,
+    subTabs,
+    handleSubChange
+}: {
+    value: number;
+    index: number;
+    subTabs: any;
+    handleSubChange: any;
+}) => {
+    return (
+        <TabPanel value={value} index={index}>
+            <Tabs value={subTabs.value} onChange={handleSubChange} aria-label="sub tabs example">
+                {subTabs.labels.map(
+                    (
+                        label:
+                            | string
+                            | number
+                            | boolean
+                            | React.ReactElement<any, string | React.JSXElementConstructor<any>>
+                            | Iterable<React.ReactNode>
+                            | React.ReactPortal
+                            | null
+                            | undefined,
+                        idx: React.Key | null | undefined
+                    ) => (
+                        <Tab key={idx} label={label} />
+                    )
+                )}
+            </Tabs>
+            {subTabs.contents.map((content: any, idx: any) => (
+                <TabPanel key={idx} value={subTabs.value} index={idx}>
+                    {content}
+                </TabPanel>
+            ))}
+        </TabPanel>
+    );
+};
+
+const NestedTabs = () => {
+    const [mainTab, setMainTab] = useState(0);
+    const [subTabs, setSubTabs] = useState([
+        {
+            value: 0,
+            labels: ["Employeur principal", "Profession principale"],
+            contents: ["Content 1-1", "Content 1-2"]
+        },
+        {
+            value: 0,
+            labels: ["Profession secondaire", "Activité secondaire"],
+            contents: ["Content 2-1", "Content 2-2"]
+        },
+        {
+            value: 0,
+            labels: ["Profession antérieure", "Activité antérieure"],
+            contents: ["Content 2-1", "Content 2-2"]
+        },
+        {
+            value: 0,
+            labels: [
+                "Profession du père",
+                "Profession du père 2",
+                "Profession de la mère",
+                "Profession de la mère 2"
+            ],
+            contents: ["Content 2-1", "Content 2-2", "Content 2-3", "Content 2-4"]
+        }
+    ]);
+
+    const handleMainChange = (_event: React.SyntheticEvent, newValue: number) => {
+        setMainTab(newValue);
+    };
+
+    const handleSubChange = (tabIndex: number) => (_event: any, newValue: number) => {
+        const newSubTabs = [...subTabs];
+        newSubTabs[tabIndex].value = newValue;
+        setSubTabs(newSubTabs);
+    };
+
+    return (
+        <Box sx={{ width: "100%", marginTop: "50px" }}>
+            <Tabs value={mainTab} onChange={handleMainChange} aria-label="main tabs">
+                <Tab label="Employeur principal" />
+                <Tab label="Employeur secondaire" />
+                <Tab label="Emploi antérieur" />
+                <Tab label="Professions des parents" />
+            </Tabs>
+            {subTabs.map((subTab, idx) => (
+                <SubTabs
+                    key={idx}
+                    value={mainTab}
+                    index={idx}
+                    subTabs={subTab}
+                    handleSubChange={handleSubChange(idx)}
+                />
+            ))}
+        </Box>
+    );
+};
+
+export default NestedTabs;
