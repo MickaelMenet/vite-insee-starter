@@ -1,8 +1,9 @@
-import React from "react";
 import { Card, CardContent, Typography, Box, Grid } from "@mui/material";
 import { Person, Wc, Cake, Assignment, Business, Work, LocalActivity } from "@mui/icons-material";
 import { styles } from "./styles";
 import { useTheme } from "@mui/material/styles";
+
+import React from "react";
 
 const InfoRow = ({
     icon: Icon,
@@ -38,20 +39,21 @@ type PersonDetailsProps = {
         nbActivites: string;
     };
     title: string;
+    onClick: () => void;
 };
 
-const PersonDetails = ({ details, title }: PersonDetailsProps) => {
+const PersonDetails = ({ details, title, onClick }: PersonDetailsProps) => {
     const muiTheme = useTheme();
 
-    const handleMouseEnter = (e: React.MouseEvent<HTMLDivElement>) => {
-        const bgCircle = e.currentTarget.querySelector(".bg-circle") as HTMLDivElement;
+    const handleMouseEnter = (e: { currentTarget: { querySelector: (arg0: string) => any } }) => {
+        const bgCircle = e.currentTarget.querySelector(".bg-circle");
         if (bgCircle) {
             bgCircle.style.transform = "scale(10)";
         }
     };
 
-    const handleMouseLeave = (e: React.MouseEvent<HTMLDivElement>) => {
-        const bgCircle = e.currentTarget.querySelector(".bg-circle") as HTMLDivElement;
+    const handleMouseLeave = (e: { currentTarget: { querySelector: (arg0: string) => any } }) => {
+        const bgCircle = e.currentTarget.querySelector(".bg-circle");
         if (bgCircle) {
             bgCircle.style.transform = "scale(1)";
         }
@@ -63,9 +65,10 @@ const PersonDetails = ({ details, title }: PersonDetailsProps) => {
     return (
         <Grid item>
             <Card
-                style={styles.card as React.CSSProperties}
+                style={{ ...styles.card, flexDirection: "row" } as React.CSSProperties}
                 onMouseEnter={handleMouseEnter}
                 onMouseLeave={handleMouseLeave}
+                onClick={onClick}
             >
                 <div className="bg-circle" style={styles.bgCircle}></div>
                 <CardContent style={styles.cardContent}>
