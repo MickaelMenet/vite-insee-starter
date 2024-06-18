@@ -25,7 +25,7 @@ const PersonDetailsCard = ({ details, logementData }: { details: any; logementDa
                 <CardContent
                     style={{ border: "solid 1px #2727A1", borderRadius: "10px", padding: "10px" }}
                 >
-                    <Typography mb={2} variant="h6" component="div" gutterBottom>
+                    <Typography color="primary" mb={2} variant="h6" component="div" gutterBottom>
                         Détails de l'individu {details.noi}
                     </Typography>
                     <Grid container spacing={1}>
