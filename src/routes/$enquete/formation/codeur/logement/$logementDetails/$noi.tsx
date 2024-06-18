@@ -78,9 +78,9 @@ const PersonDetailsCard = ({ details, logementData }: { details: any; logementDa
     );
 };
 
-export const Route = createFileRoute("/$enquete/emploi/codeur/logement/$logementDetails/$noi")({
+export const Route = createFileRoute("/$enquete/formation/codeur/logement/$logementDetails/$noi")({
     component: () => {
-        const match = useMatch("/$enquete/emploi/codeur/logement/$logementDetails/$noi");
+        const match = useMatch("/$enquete/formation/codeur/logement/$logementDetails/$noi");
         const { noi } = match.params as { noi: string };
         const personDetails = findPersonDetails(noi);
 

@@ -30,7 +30,7 @@ const PersonDetailsCard = ({ details, logementData }: { details: any; logementDa
         <Container style={{ marginTop: "20px" }}>
             <Card>
                 <CardContent>
-                    <Typography variant="h5" component="div" gutterBottom>
+                    <Typography mb={5} variant="h5" component="div" gutterBottom>
                         Détails de l'individu {details.noi}
                     </Typography>
                     <Grid container spacing={2}>
