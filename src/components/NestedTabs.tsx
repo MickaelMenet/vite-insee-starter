@@ -1,14 +1,14 @@
 import React, { useState } from "react";
 import { Tabs, Tab, Box, Typography } from "@mui/material";
 
-import EmployeurPrincipalContent from "../components/contentTabs/EmployeurPrincipalContent";
-import ProfessionPrincipaleContent from "../components/contentTabs/ProfessionPrincipaleContent";
-import ProfessionSecondaireContent from "../components/contentTabs/ProfessionSecondaireContent";
-import ActiviteSecondaireContent from "../components/contentTabs/ActiviteSecondaireContent";
-import ProfessionAnterieureContent from "../components/contentTabs/ProfessionAnterieureContent";
-import ActiviteAnterieureContent from "../components/contentTabs/ActiviteAnterieureContent";
-import ProfessionPereContent from "../components/contentTabs/ProfessionPereContent";
-import ProfessionMereContent from "../components/contentTabs/ProfessionMereContent";
+import EmployeurPrincipalContent from "./contentTabs/emploi/EmployeurPrincipalContent";
+import ProfessionPrincipaleContent from "./contentTabs/emploi/ProfessionPrincipaleContent";
+import ProfessionSecondaireContent from "./contentTabs/emploi/ProfessionSecondaireContent";
+import ActiviteSecondaireContent from "./contentTabs/emploi/ActiviteSecondaireContent";
+import ProfessionAnterieureContent from "./contentTabs/emploi/ProfessionAnterieureContent";
+import ActiviteAnterieureContent from "./contentTabs/emploi/ActiviteAnterieureContent";
+import ProfessionPereContent from "./contentTabs/emploi/ProfessionPereContent";
+import ProfessionMereContent from "./contentTabs/emploi/ProfessionMereContent";
 
 const TabPanel = (props: { [x: string]: any; children: any; value: any; index: any }) => {
     const { children, value, index, ...other } = props;

@@ -1,6 +1,7 @@
 import { createFileRoute, useMatch } from "@tanstack/react-router";
 import { details1, details2, logementData } from "../../../../../../components/logement/data";
 import PersonDetailsCard from "../../../../../../components/PersonDetailsCard";
+import SimpleTabs from "components/SimpleTabs";
 
 const findPersonDetails = (noi: string) => {
     const allDetails = [details1, details2];
@@ -17,6 +18,11 @@ export const Route = createFileRoute("/$enquete/formation/codeur/logement/$logem
             return <div>Personne non trouvée</div>;
         }
 
-        return <PersonDetailsCard details={personDetails} logementData={logementData} />;
+        return (
+            <>
+                <PersonDetailsCard details={personDetails} logementData={logementData} />
+                <SimpleTabs />
+            </>
+        );
     }
 });
