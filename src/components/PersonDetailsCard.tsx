@@ -22,7 +22,7 @@ const PersonDetailsCard = ({ details, logementData }: { details: any; logementDa
     return (
         <Container style={{ marginTop: "20px" }}>
             <Card>
-                <CardContent>
+                <CardContent style={{ border: "solid 2px #2727A1", borderRadius: "20px" }}>
                     <Typography mb={5} variant="h5" component="div" gutterBottom>
                         Détails de l'individu {details.noi}
                     </Typography>
