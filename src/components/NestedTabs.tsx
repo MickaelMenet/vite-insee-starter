@@ -34,7 +34,7 @@ const SubTabs = ({
 }) => {
     return (
         <TabPanel value={value} index={index}>
-            <Tabs value={subTabs.value} onChange={handleSubChange} aria-label="sub tabs example">
+            <Tabs value={subTabs.value} onChange={handleSubChange} aria-label="subtabs">
                 {subTabs.labels.map(
                     (
                         label:
@@ -103,9 +103,9 @@ const NestedTabs = () => {
 
     return (
         <Box sx={{ width: "100%", marginTop: "50px" }}>
-            <Tabs value={mainTab} onChange={handleMainChange} aria-label="main tabs">
-                <Tab label="Employeur principal" />
-                <Tab label="Employeur secondaire" />
+            <Tabs value={mainTab} onChange={handleMainChange} aria-label="maintabs">
+                <Tab label="Emploi principal" />
+                <Tab label="Emploi secondaire" />
                 <Tab label="Emploi antérieur" />
                 <Tab label="Professions des parents" />
             </Tabs>
