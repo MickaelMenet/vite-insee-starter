@@ -1,6 +1,15 @@
 import React, { useState } from "react";
 import { Tabs, Tab, Box, Typography } from "@mui/material";
 
+import EmployeurPrincipalContent from "../components/contentTabs/EmployeurPrincipalContent";
+import ProfessionPrincipaleContent from "../components/contentTabs/ProfessionPrincipaleContent";
+import ProfessionSecondaireContent from "../components/contentTabs/ProfessionSecondaireContent";
+import ActiviteSecondaireContent from "../components/contentTabs/ActiviteSecondaireContent";
+import ProfessionAnterieureContent from "../components/contentTabs/ProfessionAnterieureContent";
+import ActiviteAnterieureContent from "../components/contentTabs/ActiviteAnterieureContent";
+import ProfessionPereContent from "../components/contentTabs/ProfessionPereContent";
+import ProfessionMereContent from "../components/contentTabs/ProfessionMereContent";
+
 const TabPanel = (props: { [x: string]: any; children: any; value: any; index: any }) => {
     const { children, value, index, ...other } = props;
 
@@ -13,7 +22,7 @@ const TabPanel = (props: { [x: string]: any; children: any; value: any; index: a
             {...other}
         >
             {value === index && (
-                <Box p={3} sx={{ width: "100%" }}>
+                <Box p={3} sx={{ width: "100%", mt: 2 }}>
                     <Typography>{children}</Typography>
                 </Box>
             )}
@@ -52,9 +61,9 @@ const SubTabs = ({
                     )
                 )}
             </Tabs>
-            {subTabs.contents.map((content: any, idx: any) => (
+            {subTabs.contents.map((ContentComponent: any, idx: any) => (
                 <TabPanel key={idx} value={subTabs.value} index={idx}>
-                    {content}
+                    <ContentComponent />
                 </TabPanel>
             ))}
         </TabPanel>
@@ -67,17 +76,17 @@ const NestedTabs = () => {
         {
             value: 0,
             labels: ["Employeur principal", "Profession principale"],
-            contents: ["Content 1-1", "Content 1-2"]
+            contents: [EmployeurPrincipalContent, ProfessionPrincipaleContent]
         },
         {
             value: 0,
             labels: ["Profession secondaire", "Activité secondaire"],
-            contents: ["Content 2-1", "Content 2-2"]
+            contents: [ProfessionSecondaireContent, ActiviteSecondaireContent]
         },
         {
             value: 0,
             labels: ["Profession antérieure", "Activité antérieure"],
-            contents: ["Content 2-1", "Content 2-2"]
+            contents: [ProfessionAnterieureContent, ActiviteAnterieureContent]
         },
         {
             value: 0,
@@ -87,7 +96,12 @@ const NestedTabs = () => {
                 "Profession de la mère",
                 "Profession de la mère 2"
             ],
-            contents: ["Content 2-1", "Content 2-2", "Content 2-3", "Content 2-4"]
+            contents: [
+                ProfessionPereContent,
+                ProfessionPereContent,
+                ProfessionMereContent,
+                ProfessionMereContent
+            ]
         }
     ]);
 
@@ -104,8 +118,8 @@ const NestedTabs = () => {
     return (
         <Box sx={{ width: "100%", marginTop: "50px" }}>
             <Tabs value={mainTab} onChange={handleMainChange} aria-label="maintabs">
-                <Tab label="Emploi principal" />
-                <Tab label="Emploi secondaire" />
+                <Tab label="Employeur principal" />
+                <Tab label="Employeur secondaire" />
                 <Tab label="Emploi antérieur" />
                 <Tab label="Professions des parents" />
             </Tabs>
