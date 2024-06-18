@@ -1,0 +1,126 @@
+import { useState } from "react";
+import { Typography, Box, Grid, TextField, Button } from "@mui/material";
+
+const ProfessionPereContent = () => {
+    const [editable, setEditable] = useState(false);
+
+    const handleEdit = () => {
+        setEditable(!editable);
+    };
+
+    return (
+        <Box>
+            <Typography mb={4} variant="h6" gutterBottom>
+                Profession du Père
+            </Typography>
+            <Grid container spacing={2}>
+                <Grid item xs={12} sm={6}>
+                    <TextField
+                        fullWidth
+                        label="Libellé d'activité"
+                        defaultValue="Agriculture"
+                        variant="outlined"
+                        InputProps={{
+                            readOnly: !editable
+                        }}
+                    />
+                </Grid>
+                <Grid item xs={12} sm={6}>
+                    <TextField
+                        fullWidth
+                        label="Statut (var. collectée)"
+                        defaultValue="Indépendant"
+                        variant="outlined"
+                        InputProps={{
+                            readOnly: !editable
+                        }}
+                    />
+                </Grid>
+                <Grid item xs={12} sm={6}>
+                    <TextField
+                        fullWidth
+                        label="NAF2"
+                        defaultValue="01"
+                        variant="outlined"
+                        InputProps={{
+                            readOnly: !editable
+                        }}
+                    />
+                </Grid>
+                <Grid item xs={12} sm={6}>
+                    <TextField
+                        fullWidth
+                        label="Supervision"
+                        defaultValue="Non"
+                        variant="outlined"
+                        InputProps={{
+                            readOnly: !editable
+                        }}
+                    />
+                </Grid>
+                <Grid item xs={12} sm={6}>
+                    <TextField
+                        fullWidth
+                        label="Libellé profession"
+                        defaultValue="Agriculteur"
+                        variant="outlined"
+                        InputProps={{
+                            readOnly: !editable
+                        }}
+                    />
+                </Grid>
+                <Grid item xs={12} sm={6}>
+                    <TextField
+                        fullWidth
+                        label="Codage PCS"
+                        defaultValue="621a"
+                        variant="outlined"
+                        InputProps={{
+                            readOnly: !editable
+                        }}
+                    />
+                </Grid>
+                <Grid item xs={12} sm={6}>
+                    <TextField
+                        fullWidth
+                        label="Validation"
+                        defaultValue="Validé"
+                        variant="outlined"
+                        InputProps={{
+                            readOnly: !editable
+                        }}
+                    />
+                </Grid>
+                <Grid item xs={12} sm={6}>
+                    <TextField
+                        fullWidth
+                        label="Code PCS"
+                        defaultValue="1201"
+                        variant="outlined"
+                        InputProps={{
+                            readOnly: !editable
+                        }}
+                    />
+                </Grid>
+                <Grid item xs={12} sm={6}>
+                    <TextField
+                        fullWidth
+                        label="Nomenclature PCS"
+                        defaultValue="Agriculteurs exploitants"
+                        variant="outlined"
+                        InputProps={{
+                            readOnly: !editable
+                        }}
+                    />
+                </Grid>
+            </Grid>
+            <Box mt={2}>
+                <Button variant="contained" onClick={handleEdit}>
+                    {editable ? "Sauvegarder" : "Éditer"}
+                </Button>
+            </Box>
+        </Box>
+    );
+};
+
+export default ProfessionPereContent;
