@@ -3,8 +3,6 @@ import { Person, Wc, Cake, Assignment, Business, Work, LocalActivity } from "@mu
 import { styles } from "./styles";
 import { useTheme } from "@mui/material/styles";
 
-import React from "react";
-
 const InfoRow = ({
     icon: Icon,
     label,
@@ -44,15 +42,14 @@ type PersonDetailsProps = {
 
 const PersonDetails = ({ details, title, onClick }: PersonDetailsProps) => {
     const muiTheme = useTheme();
-
-    const handleMouseEnter = (e: { currentTarget: { querySelector: (arg0: string) => any } }) => {
+    const handleMouseEnter = e => {
         const bgCircle = e.currentTarget.querySelector(".bg-circle");
         if (bgCircle) {
             bgCircle.style.transform = "scale(10)";
         }
     };
 
-    const handleMouseLeave = (e: { currentTarget: { querySelector: (arg0: string) => any } }) => {
+    const handleMouseLeave = e => {
         const bgCircle = e.currentTarget.querySelector(".bg-circle");
         if (bgCircle) {
             bgCircle.style.transform = "scale(1)";
@@ -65,7 +62,7 @@ const PersonDetails = ({ details, title, onClick }: PersonDetailsProps) => {
     return (
         <Grid item>
             <Card
-                style={{ ...styles.card, flexDirection: "row" } as React.CSSProperties}
+                style={{ ...styles.card, flexDirection: "row" }}
                 onMouseEnter={handleMouseEnter}
                 onMouseLeave={handleMouseLeave}
                 onClick={onClick}

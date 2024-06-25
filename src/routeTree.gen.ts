@@ -24,8 +24,8 @@ import { Route as EnqueteEmploiExpertLogementLogementImport } from './routes/$en
 import { Route as EnqueteEmploiCodeurLogementLogementImport } from './routes/$enquete/emploi/codeur/logement/$logement'
 import { Route as EnqueteFormationExpertLogementLogementDetailsNoiImport } from './routes/$enquete/formation/expert/logement/$logementDetails/$noi'
 import { Route as EnqueteFormationCodeurLogementLogementDetailsNoiImport } from './routes/$enquete/formation/codeur/logement/$logementDetails/$noi'
-import { Route as EnqueteEmploiExpertLogementLogementDetailsNoiImport } from './routes/$enquete/emploi/expert/logement/$logementDetails/$noi'
-import { Route as EnqueteEmploiCodeurLogementLogementDetailsNoiImport } from './routes/$enquete/emploi/codeur/logement/$logementDetails/$noi'
+import { Route as EnqueteEmploiExpertLogementLogementDetailsIndexImport } from './routes/$enquete/emploi/expert/logement/$logementDetails/$index'
+import { Route as EnqueteEmploiCodeurLogementLogementDetailsIndexImport } from './routes/$enquete/emploi/codeur/logement/$logementDetails/$index'
 
 // Create Virtual Routes
 
@@ -109,15 +109,15 @@ const EnqueteFormationCodeurLogementLogementDetailsNoiRoute =
     getParentRoute: () => rootRoute,
   } as any)
 
-const EnqueteEmploiExpertLogementLogementDetailsNoiRoute =
-  EnqueteEmploiExpertLogementLogementDetailsNoiImport.update({
-    path: '/$enquete/emploi/expert/logement/$logementDetails/$noi',
+const EnqueteEmploiExpertLogementLogementDetailsIndexRoute =
+  EnqueteEmploiExpertLogementLogementDetailsIndexImport.update({
+    path: '/$enquete/emploi/expert/logement/$logementDetails/$index',
     getParentRoute: () => rootRoute,
   } as any)
 
-const EnqueteEmploiCodeurLogementLogementDetailsNoiRoute =
-  EnqueteEmploiCodeurLogementLogementDetailsNoiImport.update({
-    path: '/$enquete/emploi/codeur/logement/$logementDetails/$noi',
+const EnqueteEmploiCodeurLogementLogementDetailsIndexRoute =
+  EnqueteEmploiCodeurLogementLogementDetailsIndexImport.update({
+    path: '/$enquete/emploi/codeur/logement/$logementDetails/$index',
     getParentRoute: () => rootRoute,
   } as any)
 
@@ -202,18 +202,18 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof EnqueteFormationExpertLogementLogementImport
       parentRoute: typeof rootRoute
     }
-    '/$enquete/emploi/codeur/logement/$logementDetails/$noi': {
-      id: '/$enquete/emploi/codeur/logement/$logementDetails/$noi'
-      path: '/$enquete/emploi/codeur/logement/$logementDetails/$noi'
-      fullPath: '/$enquete/emploi/codeur/logement/$logementDetails/$noi'
-      preLoaderRoute: typeof EnqueteEmploiCodeurLogementLogementDetailsNoiImport
+    '/$enquete/emploi/codeur/logement/$logementDetails/$index': {
+      id: '/$enquete/emploi/codeur/logement/$logementDetails/$index'
+      path: '/$enquete/emploi/codeur/logement/$logementDetails/$index'
+      fullPath: '/$enquete/emploi/codeur/logement/$logementDetails/$index'
+      preLoaderRoute: typeof EnqueteEmploiCodeurLogementLogementDetailsIndexImport
       parentRoute: typeof rootRoute
     }
-    '/$enquete/emploi/expert/logement/$logementDetails/$noi': {
-      id: '/$enquete/emploi/expert/logement/$logementDetails/$noi'
-      path: '/$enquete/emploi/expert/logement/$logementDetails/$noi'
-      fullPath: '/$enquete/emploi/expert/logement/$logementDetails/$noi'
-      preLoaderRoute: typeof EnqueteEmploiExpertLogementLogementDetailsNoiImport
+    '/$enquete/emploi/expert/logement/$logementDetails/$index': {
+      id: '/$enquete/emploi/expert/logement/$logementDetails/$index'
+      path: '/$enquete/emploi/expert/logement/$logementDetails/$index'
+      fullPath: '/$enquete/emploi/expert/logement/$logementDetails/$index'
+      preLoaderRoute: typeof EnqueteEmploiExpertLogementLogementDetailsIndexImport
       parentRoute: typeof rootRoute
     }
     '/$enquete/formation/codeur/logement/$logementDetails/$noi': {
@@ -247,8 +247,8 @@ export const routeTree = rootRoute.addChildren({
   EnqueteEmploiExpertLogementLogementRoute,
   EnqueteFormationCodeurLogementLogementRoute,
   EnqueteFormationExpertLogementLogementRoute,
-  EnqueteEmploiCodeurLogementLogementDetailsNoiRoute,
-  EnqueteEmploiExpertLogementLogementDetailsNoiRoute,
+  EnqueteEmploiCodeurLogementLogementDetailsIndexRoute,
+  EnqueteEmploiExpertLogementLogementDetailsIndexRoute,
   EnqueteFormationCodeurLogementLogementDetailsNoiRoute,
   EnqueteFormationExpertLogementLogementDetailsNoiRoute,
 })

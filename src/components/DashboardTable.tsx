@@ -3,13 +3,20 @@ import { Table } from "@codegouvfr/react-dsfr/Table";
 
 type DashboardTableProps = {
     routePrefix: string;
-    tableData: any[];
+    tableData: {
+        quarter: string;
+        location: string;
+        personCount: number;
+        logementCount: number;
+        someOtherCount: number;
+        noi: string;
+    }[];
 };
 
 const DashboardTable = ({ routePrefix, tableData }: DashboardTableProps) => {
     const navigate = useNavigate();
 
-    const handleRowClick = (housingId: any) => {
+    const handleRowClick = (housingId: string) => {
         navigate({ to: `/${routePrefix}/logement/${housingId}` });
     };
 
@@ -21,16 +28,16 @@ const DashboardTable = ({ routePrefix, tableData }: DashboardTableProps) => {
             fixed
             data={tableData.map(row => [
                 <Link
-                    to={`/${routePrefix}/logement/${row[5]}`}
-                    onClick={() => handleRowClick(row[5])}
-                    key={row[5]}
+                    to={`/${routePrefix}/logement/${row.noi}`}
+                    onClick={() => handleRowClick(row.noi)}
+                    key={row.noi}
                 >
-                    {row[1]}
+                    {row.location}
                 </Link>,
-                row[0],
-                row[2],
-                row[3],
-                row[4]
+                row.quarter,
+                row.personCount,
+                row.logementCount,
+                row.someOtherCount
             ])}
             headers={[
                 "Régions",

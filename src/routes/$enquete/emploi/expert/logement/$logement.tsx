@@ -1,38 +1,51 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, useMatch } from "@tanstack/react-router";
 import { styles } from "../../../../../components/logement/styles";
-import { logementData, details1, details2 } from "../../../../../components/logement/data";
+import { tableData } from "../../../../../../src/data/dataDashboardEmploi";
 import PersonDetails from "../../../../../components/logement/PersonDetails";
 import LogementDetails from "../../../../../components/logement/LogementDetails";
 import { CSSProperties } from "react";
 import { useNavigate } from "@tanstack/react-router";
 
+const findLogementDetails = (logementId: string) => {
+    return tableData.find(entry => entry.noi === logementId);
+};
+
 export const Route = createFileRoute("/$enquete/emploi/expert/logement/$logement")({
     component: () => {
         // eslint-disable-next-line react-hooks/rules-of-hooks
+        const match = useMatch("/$enquete/emploi/expert/logement/$logement");
+        const { logement } = match.params as { logement: string };
+        const logementDetails = findLogementDetails(logement);
+
+        // eslint-disable-next-line react-hooks/rules-of-hooks
         const navigate = useNavigate();
 
-        const handlePersonClick = (noi: string) => {
-            navigate({ to: `/enquete/emploi/expert/logement/${logementData.logement}/${noi}` });
+        const handlePersonClick = (index: number) => {
+            navigate({ to: `/enquete/emploi/expert/logement/${logement}/${index + 1}` });
         };
+
+        if (!logementDetails) {
+            return <div>Logement non trouvé</div>;
+        }
 
         return (
             <div style={styles.container as CSSProperties}>
                 <div style={styles.calloutContainer}>
-                    <h2>Liste des QI à traiter pour le logement {logementData.logement}</h2>
-                    <LogementDetails data={logementData} />
+                    <h2>
+                        Liste des QI à traiter pour le logement {logementDetails.logementData.logementId}
+                    </h2>
+                    <LogementDetails data={logementDetails.logementData} />
                 </div>
                 <h2 style={{ marginTop: "20px" }}>Détails des individus du logement</h2>
                 <div style={styles.detailsContainer}>
-                    <PersonDetails
-                        details={details1}
-                        title="Individu 1"
-                        onClick={() => handlePersonClick(details1.noi)}
-                    />
-                    <PersonDetails
-                        details={details2}
-                        title="Individu 2"
-                        onClick={() => handlePersonClick(details2.noi)}
-                    />
+                    {logementDetails.personDetails.map((person, index) => (
+                        <PersonDetails
+                            key={person.noi}
+                            details={person}
+                            title={`Individu ${index + 1}`}
+                            onClick={() => handlePersonClick(index)}
+                        />
+                    ))}
                 </div>
             </div>
         );

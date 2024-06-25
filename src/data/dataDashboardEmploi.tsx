@@ -1,42 +1,192 @@
 export const tableData = [
-  ["2024T1", "Guadeloupe", "8", "2", "6", "MEL-001"],
-  ["2024T1", "Martinique", "1", "0", "1", "MEL-002"],
-  ["2024T1", "Guyane", "2", "0", "2", "MEL-003"],
-  ["2024T1", "Réunion", "1", "1", "1", "MEL-004"],
-  ["2024T1", "06", "5", "0", "3", "MEL-005"],
-  ["2024T1", "Ile-de-France", "69", "1", "54", "MEL-006"],
-  ["2024T1", "Picardie", "2", "1", "2", "MEL-007"],
-  ["2024T1", "Haute-Normandie", "18", "0", "17", "MEL-008"],
-  ["2024T1", "Centre", "5", "0", "5", "MEL-009"],
-  ["2024T1", "Bourgogne", "1", "1", "1", "MEL-010"],
-  ["2024T1", "Nord-Pas-de-Calais", "1", "1", "1", "MEL-011"],
-  ["2024T1", "Lorraine", "7", "0", "7", "MEL-012"],
-  ["2024T1", "Franche-Comté", "3", "0", "3", "MEL-013"],
-  ["2024T1", "Pays de la Loire", "5", "2", "5", "MEL-014"],
-  ["2024T1", "Poitou-Charentes", "6", "0", "5", "MEL-015"],
-  ["2024T1", "Aquitaine", "9", "3", "8", "MEL-016"],
-  ["2024T1", "Midi-Pyrénées", "17", "0", "13", "MEL-017"],
-  ["2024T1", "Limousin", "1", "0", "1", "MEL-018"],
-  ["2024T1", "Rhône-Alpes", "13", "0", "12", "MEL-019"],
-  ["2024T1", "Auvergne", "1", "0", "1", "MEL-020"],
-  ["2024T1", "Provence-Alpes-Côte d’Azur", "7", "0", "7", "MEL-021"],
-  ["2024T2", "Guyane", "1", "0", "1", "MEL-022"],
-  ["2024T2", "Réunion", "1", "0", "1", "MEL-023"],
-  ["2024T2", "Ile-de-France", "11", "0", "9", "MEL-024"],
-  ["2024T2", "Picardie", "1", "0", "1", "MEL-025"],
-  ["2024T2", "Haute-Normandie", "3", "0", "3", "MEL-026"],
-  ["2024T2", "Centre", "2", "1", "2", "MEL-027"],
-  ["2024T2", "Bourgogne", "2", "1", "2", "MEL-028"],
-  ["2024T2", "Nord-Pas-de-Calais", "4", "0", "3", "MEL-029"],
-  ["2024T2", "Lorraine", "3", "0", "3", "MEL-030"],
-  ["2024T2", "Alsace", "1", "0", "1", "MEL-031"],
-  ["2024T2", "Franche-Comté", "7", "0", "7", "MEL-032"],
-  ["2024T2", "Pays de la Loire", "3", "0", "3", "MEL-033"],
-  ["2024T2", "Bretagne", "1", "1", "1", "MEL-034"],
-  ["2024T2", "Poitou-Charentes", "4", "0", "3", "MEL-035"],
-  ["2024T2", "Aquitaine", "1", "0", "1", "MEL-036"],
-  ["2024T2", "Midi-Pyrénées", "3", "0", "3", "MEL-037"],
-  ["2024T2", "Rhône-Alpes", "6", "0", "6", "MEL-038"],
-  ["2024T2", "Auvergne", "1", "0", "1", "MEL-039"],
-  ["2024T2", "Provence-Alpes-Côte d’Azur", "7", "0", "7", "MEL-040"]
+    {
+        quarter: "2024T1",
+        location: "Guadeloupe",
+        personCount: 8,
+        logementCount: 2,
+        someOtherCount: 6,
+        noi: "MEL-001",
+        logementData: {
+            logementId: "MEL-001",
+            quarter: "2024T1",
+            rges: "123456",
+            noenq: "NOENQ001",
+            dep: "971",
+            commune: "Pointe-à-Pitre",
+            address: "123 Rue de la Liberté",
+            type: "Appartement"
+        },
+        personDetails: [
+            {
+                noi: "PERS-001",
+                prenom: "John Doe",
+                sexe: "Homme",
+                naissance: "1994-05-10",
+                etatQIEmpl: "Actif",
+                etabEmployeur: "Entreprise A",
+                nbProfessionsPCS: "1",
+                nbActivites: "2"
+            },
+            {
+                noi: "PERS-002",
+                prenom: "Jane Smith",
+                sexe: "Femme",
+                naissance: "1998-03-15",
+                etatQIEmpl: "Inactif",
+                etabEmployeur: "Entreprise B",
+                nbProfessionsPCS: "2",
+                nbActivites: "1"
+            }
+        ]
+    },
+    {
+        quarter: "2024T1",
+        location: "Martinique",
+        personCount: 1,
+        logementCount: 0,
+        someOtherCount: 1,
+        noi: "MEL-002",
+        logementData: {
+            logementId: "MEL-002",
+            quarter: "2024T1",
+            rges: "789012",
+            noenq: "NOENQ002",
+            dep: "972",
+            commune: "Fort-de-France",
+            address: "456 Avenue des Tropiques",
+            type: "Maison"
+        },
+        personDetails: [
+            {
+                noi: "PERS-003",
+                prenom: "Alice Johnson",
+                sexe: "Femme",
+                naissance: "1983-07-22",
+                etatQIEmpl: "Retraité",
+                etabEmployeur: "Entreprise C",
+                nbProfessionsPCS: "1",
+                nbActivites: "1"
+            }
+        ]
+    },
+    {
+        quarter: "2024T1",
+        location: "Guyane",
+        personCount: 2,
+        logementCount: 0,
+        someOtherCount: 2,
+        noi: "MEL-003",
+        logementData: {
+            logementId: "MEL-003",
+            quarter: "2024T1",
+            rges: "345678",
+            noenq: "NOENQ003",
+            dep: "973",
+            commune: "Cayenne",
+            address: "789 Boulevard des Palmiers",
+            type: "Villa"
+        },
+        personDetails: [
+            {
+                noi: "PERS-004",
+                prenom: "Bob Brown",
+                sexe: "Homme",
+                naissance: "1973-09-11",
+                etatQIEmpl: "Actif",
+                etabEmployeur: "Entreprise D",
+                nbProfessionsPCS: "3",
+                nbActivites: "2"
+            },
+            {
+                noi: "PERS-005",
+                prenom: "Carol White",
+                sexe: "Femme",
+                naissance: "1988-12-05",
+                etatQIEmpl: "En recherche d'emploi",
+                etabEmployeur: "Entreprise E",
+                nbProfessionsPCS: "2",
+                nbActivites: "3"
+            }
+        ]
+    },
+    {
+        quarter: "2024T1",
+        location: "Réunion",
+        personCount: 1,
+        logementCount: 1,
+        someOtherCount: 1,
+        noi: "MEL-004",
+        logementData: {
+            logementId: "MEL-004",
+            quarter: "2024T1",
+            rges: "901234",
+            noenq: "NOENQ004",
+            dep: "974",
+            commune: "Saint-Denis",
+            address: "1010 Route des Volcans",
+            type: "Maison"
+        },
+        personDetails: [
+            {
+                noi: "PERS-006",
+                prenom: "David Green",
+                sexe: "Homme",
+                naissance: "1996-04-14",
+                etatQIEmpl: "Étudiant",
+                etabEmployeur: "Université F",
+                nbProfessionsPCS: "1",
+                nbActivites: "2"
+            }
+        ]
+    },
+    {
+        quarter: "2024T1",
+        location: "Mayotte",
+        personCount: 5,
+        logementCount: 0,
+        someOtherCount: 3,
+        noi: "MEL-005",
+        logementData: {
+            logementId: "MEL-005",
+            quarter: "2024T1",
+            rges: "567890",
+            noenq: "NOENQ005",
+            dep: "976",
+            commune: "Mamoudzou",
+            address: "1111 Chemin des Mimosas",
+            type: "Appartement"
+        },
+        personDetails: [
+            {
+                noi: "PERS-007",
+                prenom: "Emma Blue",
+                sexe: "Femme",
+                naissance: "1978-02-17",
+                etatQIEmpl: "Actif",
+                etabEmployeur: "Entreprise G",
+                nbProfessionsPCS: "1",
+                nbActivites: "2"
+            },
+            {
+                noi: "PERS-008",
+                prenom: "Frank Yellow",
+                sexe: "Homme",
+                naissance: "1991-11-23",
+                etatQIEmpl: "Inactif",
+                etabEmployeur: "Entreprise H",
+                nbProfessionsPCS: "2",
+                nbActivites: "1"
+            },
+            {
+                noi: "PERS-009",
+                prenom: "Grace Pink",
+                sexe: "Femme",
+                naissance: "1986-06-30",
+                etatQIEmpl: "En recherche d'emploi",
+                etabEmployeur: "Entreprise I",
+                nbProfessionsPCS: "3",
+                nbActivites: "3"
+            }
+        ]
+    }
 ];
