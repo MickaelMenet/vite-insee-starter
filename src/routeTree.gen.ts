@@ -22,8 +22,8 @@ import { Route as EnqueteFormationExpertLogementLogementImport } from './routes/
 import { Route as EnqueteFormationCodeurLogementLogementImport } from './routes/$enquete/formation/codeur/logement/$logement'
 import { Route as EnqueteEmploiExpertLogementLogementImport } from './routes/$enquete/emploi/expert/logement/$logement'
 import { Route as EnqueteEmploiCodeurLogementLogementImport } from './routes/$enquete/emploi/codeur/logement/$logement'
-import { Route as EnqueteFormationExpertLogementLogementDetailsNoiImport } from './routes/$enquete/formation/expert/logement/$logementDetails/$noi'
-import { Route as EnqueteFormationCodeurLogementLogementDetailsNoiImport } from './routes/$enquete/formation/codeur/logement/$logementDetails/$noi'
+import { Route as EnqueteFormationExpertLogementLogementDetailsIndexImport } from './routes/$enquete/formation/expert/logement/$logementDetails/$index'
+import { Route as EnqueteFormationCodeurLogementLogementDetailsIndexImport } from './routes/$enquete/formation/codeur/logement/$logementDetails/$index'
 import { Route as EnqueteEmploiExpertLogementLogementDetailsIndexImport } from './routes/$enquete/emploi/expert/logement/$logementDetails/$index'
 import { Route as EnqueteEmploiCodeurLogementLogementDetailsIndexImport } from './routes/$enquete/emploi/codeur/logement/$logementDetails/$index'
 
@@ -97,15 +97,15 @@ const EnqueteEmploiCodeurLogementLogementRoute =
     getParentRoute: () => rootRoute,
   } as any)
 
-const EnqueteFormationExpertLogementLogementDetailsNoiRoute =
-  EnqueteFormationExpertLogementLogementDetailsNoiImport.update({
-    path: '/$enquete/formation/expert/logement/$logementDetails/$noi',
+const EnqueteFormationExpertLogementLogementDetailsIndexRoute =
+  EnqueteFormationExpertLogementLogementDetailsIndexImport.update({
+    path: '/$enquete/formation/expert/logement/$logementDetails/$index',
     getParentRoute: () => rootRoute,
   } as any)
 
-const EnqueteFormationCodeurLogementLogementDetailsNoiRoute =
-  EnqueteFormationCodeurLogementLogementDetailsNoiImport.update({
-    path: '/$enquete/formation/codeur/logement/$logementDetails/$noi',
+const EnqueteFormationCodeurLogementLogementDetailsIndexRoute =
+  EnqueteFormationCodeurLogementLogementDetailsIndexImport.update({
+    path: '/$enquete/formation/codeur/logement/$logementDetails/$index',
     getParentRoute: () => rootRoute,
   } as any)
 
@@ -216,18 +216,18 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof EnqueteEmploiExpertLogementLogementDetailsIndexImport
       parentRoute: typeof rootRoute
     }
-    '/$enquete/formation/codeur/logement/$logementDetails/$noi': {
-      id: '/$enquete/formation/codeur/logement/$logementDetails/$noi'
-      path: '/$enquete/formation/codeur/logement/$logementDetails/$noi'
-      fullPath: '/$enquete/formation/codeur/logement/$logementDetails/$noi'
-      preLoaderRoute: typeof EnqueteFormationCodeurLogementLogementDetailsNoiImport
+    '/$enquete/formation/codeur/logement/$logementDetails/$index': {
+      id: '/$enquete/formation/codeur/logement/$logementDetails/$index'
+      path: '/$enquete/formation/codeur/logement/$logementDetails/$index'
+      fullPath: '/$enquete/formation/codeur/logement/$logementDetails/$index'
+      preLoaderRoute: typeof EnqueteFormationCodeurLogementLogementDetailsIndexImport
       parentRoute: typeof rootRoute
     }
-    '/$enquete/formation/expert/logement/$logementDetails/$noi': {
-      id: '/$enquete/formation/expert/logement/$logementDetails/$noi'
-      path: '/$enquete/formation/expert/logement/$logementDetails/$noi'
-      fullPath: '/$enquete/formation/expert/logement/$logementDetails/$noi'
-      preLoaderRoute: typeof EnqueteFormationExpertLogementLogementDetailsNoiImport
+    '/$enquete/formation/expert/logement/$logementDetails/$index': {
+      id: '/$enquete/formation/expert/logement/$logementDetails/$index'
+      path: '/$enquete/formation/expert/logement/$logementDetails/$index'
+      fullPath: '/$enquete/formation/expert/logement/$logementDetails/$index'
+      preLoaderRoute: typeof EnqueteFormationExpertLogementLogementDetailsIndexImport
       parentRoute: typeof rootRoute
     }
   }
@@ -249,8 +249,8 @@ export const routeTree = rootRoute.addChildren({
   EnqueteFormationExpertLogementLogementRoute,
   EnqueteEmploiCodeurLogementLogementDetailsIndexRoute,
   EnqueteEmploiExpertLogementLogementDetailsIndexRoute,
-  EnqueteFormationCodeurLogementLogementDetailsNoiRoute,
-  EnqueteFormationExpertLogementLogementDetailsNoiRoute,
+  EnqueteFormationCodeurLogementLogementDetailsIndexRoute,
+  EnqueteFormationExpertLogementLogementDetailsIndexRoute,
 })
 
 /* prettier-ignore-end */
