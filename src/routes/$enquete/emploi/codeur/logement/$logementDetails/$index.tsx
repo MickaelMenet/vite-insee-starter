@@ -35,9 +35,11 @@ export const Route = createFileRoute("/$enquete/emploi/codeur/logement/$logement
 
         return (
             <>
-                <Box display="flex">
-                    <Box flexGrow={1}>
+                <Box display="flex" flexDirection="column" alignItems="center" padding="20px">
+                    <Box width="100%" mb={3}>
                         <PersonDetailsCard details={personDetails} logementData={logementData} />
+                    </Box>
+                    <Box width="100%">
                         <ActionButtons />
                     </Box>
                 </Box>
