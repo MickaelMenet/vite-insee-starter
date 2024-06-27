@@ -32,12 +32,14 @@ const VariablesModal: React.FC<VariablesModalProps> = ({ open, handleClose }) =>
     const headerStyle = {
         fontWeight: "bold",
         backgroundColor: "#e0f7fa",
-        padding: "8px 0"
+        padding: "8px 0",
+        border: "1px solid #ccc"
     };
 
     const cellStyle = {
         padding: "8px",
-        backgroundColor: "#f1f8fb"
+        backgroundColor: "#f1f8fb",
+        border: "1px solid #ccc"
     };
 
     return (
@@ -65,7 +67,7 @@ const VariablesModal: React.FC<VariablesModalProps> = ({ open, handleClose }) =>
                                 xs={6}
                                 sx={{
                                     ...cellStyle,
-                                    backgroundColor: index % 1 === 0 ? "#f1f8fb" : "#ffffff"
+                                    backgroundColor: index % 2 === 0 ? "#f1f8fb" : "#ffffff"
                                 }}
                             >
                                 <Typography align="center">{variable[0]}</Typography>
@@ -75,7 +77,7 @@ const VariablesModal: React.FC<VariablesModalProps> = ({ open, handleClose }) =>
                                 xs={6}
                                 sx={{
                                     ...cellStyle,
-                                    backgroundColor: index % 1 === 0 ? "#f1f8fb" : "#ffffff"
+                                    backgroundColor: index % 2 === 0 ? "#f1f8fb" : "#ffffff"
                                 }}
                             >
                                 <Typography align="center">{variable[1]}</Typography>
