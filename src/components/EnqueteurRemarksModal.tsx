@@ -31,12 +31,14 @@ const EnqueteurRemarksModal: React.FC<EnqueteurRemarksModalProps> = ({ open, han
 
     const headerStyle = {
         fontWeight: "bold",
-        backgroundColor: "#e0f7fa"
+        backgroundColor: "#e0f7fa",
+        border: "1px solid #ccc"
     };
 
     const cellStyle = {
         padding: "8px",
-        backgroundColor: "#f1f8fb"
+        backgroundColor: "#f1f8fb",
+        border: "1px solid #ccc"
     };
 
     return (
@@ -64,7 +66,7 @@ const EnqueteurRemarksModal: React.FC<EnqueteurRemarksModalProps> = ({ open, han
                                 xs={6}
                                 sx={{
                                     ...cellStyle,
-                                    backgroundColor: index % 1 === 0 ? "#f1f8fb" : "#ffffff"
+                                    backgroundColor: index % 2 === 0 ? "#f1f8fb" : "#ffffff"
                                 }}
                             >
                                 <Typography align="center">{row[0]}</Typography>
@@ -74,7 +76,7 @@ const EnqueteurRemarksModal: React.FC<EnqueteurRemarksModalProps> = ({ open, han
                                 xs={6}
                                 sx={{
                                     ...cellStyle,
-                                    backgroundColor: index % 1 === 0 ? "#f1f8fb" : "#ffffff"
+                                    backgroundColor: index % 2 === 0 ? "#f1f8fb" : "#ffffff"
                                 }}
                             >
                                 <Typography align="center">{row[1]}</Typography>
