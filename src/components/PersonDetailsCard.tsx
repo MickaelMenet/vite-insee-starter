@@ -21,9 +21,14 @@ const CardDetails = ({ label, value, icon }: { label: string; value: string; ico
 const PersonDetailsCard = ({ details, logementData }: { details: any; logementData: any }) => {
     return (
         <Container style={{ marginTop: "20px", maxWidth: "100%" }}>
-            <Card style={{ boxShadow: "8px 8px 8px rgba(0, 0, 0, 0.2)", borderRadius: "10px" }}>
+            <Card
+                style={{
+                    boxShadow: "8px 8px 8px rgba(0, 0, 0, 0.2)",
+                    borderRadius: "10px"
+                }}
+            >
                 <CardContent
-                    style={{ border: "solid 1px #2727A1", borderRadius: "10px", padding: "20px" }}
+                    style={{ border: "solid 3px #000091", borderRadius: "10px", padding: "20px" }}
                 >
                     <Typography color="primary" mb={2} variant="h6" component="div" gutterBottom>
                         Détails de l'individu {details.noi}
