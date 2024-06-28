@@ -18,7 +18,18 @@ const CardDetails = ({ label, value, icon }: { label: string; value: string; ico
     </Grid>
 );
 
-const PersonDetailsCard = ({ details, logementData }: { details: any; logementData: any }) => {
+type PersonDetails = {
+    noi: string;
+    sexe: string;
+    naissance: string;
+    prenom: string;
+    etatQIEmpl: string;
+    etabEmployeur: string;
+    nbProfessionsPCS: string;
+    nbActivites: string;
+};
+
+const PersonDetailsCard = ({ details, logementData }: { details: PersonDetails; logementData: any }) => {
     return (
         <Container style={{ marginTop: "20px", maxWidth: "100%" }}>
             <Card
@@ -46,17 +57,17 @@ const PersonDetailsCard = ({ details, logementData }: { details: any; logementDa
                         />
                         <CardDetails
                             label="NOENQ"
-                            value={logementData.trimestre}
+                            value={logementData.noenq}
                             icon={<BadgeIcon fontSize="small" />}
                         />
                         <CardDetails
                             label="Logement"
-                            value={logementData.logement}
+                            value={logementData.type}
                             icon={<HomeIcon fontSize="small" />}
                         />
                         <CardDetails
                             label="DEP"
-                            value={logementData.rges}
+                            value={logementData.dep}
                             icon={<LocationOnIcon fontSize="small" />}
                         />
                         <CardDetails
@@ -66,7 +77,7 @@ const PersonDetailsCard = ({ details, logementData }: { details: any; logementDa
                         />
                         <CardDetails
                             label="Adresse"
-                            value={logementData.adresse}
+                            value={logementData.address}
                             icon={<HomeIcon fontSize="small" />}
                         />
                         <CardDetails
