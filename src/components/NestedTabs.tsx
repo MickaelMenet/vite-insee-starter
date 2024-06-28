@@ -149,8 +149,8 @@ const NestedTabs = () => {
                     label="Employeur secondaire"
                     sx={{
                         "&.Mui-selected": {
-                            backgroundColor: "#f0f0f0", // Gris plus léger
-                            borderRadius: "8px" // Arrondi des bords
+                            backgroundColor: "#f0f0f0",
+                            borderRadius: "8px"
                         }
                     }}
                 />
@@ -158,8 +158,8 @@ const NestedTabs = () => {
                     label="Emploi antérieur"
                     sx={{
                         "&.Mui-selected": {
-                            backgroundColor: "#f0f0f0", // Gris plus léger
-                            borderRadius: "8px" // Arrondi des bords
+                            backgroundColor: "#f0f0f0",
+                            borderRadius: "8px"
                         }
                     }}
                 />
