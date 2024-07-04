@@ -1,212 +1,25 @@
-import { useState } from "react";
-import { Typography, Box, Grid, TextField, Button } from "@mui/material";
+import FormSection from "../FormSection";
 
 export default function NouveauDiplomeContent() {
-    const [editable, setEditable] = useState(false);
+    const fields = [
+        { label: "Type formation", defaultValue: "Type de formation exemple" },
+        { label: "Année", defaultValue: "2024" },
+        { label: "Niveau du diplôme", defaultValue: "Niveau de diplôme exemple" },
+        { label: "Pays", defaultValue: "France" },
+        { label: "Alternance", defaultValue: "Oui" },
+        { label: "VAE", defaultValue: "Non" },
+        { label: "Année 1ère interruption des études", defaultValue: "2020" },
+        { label: "Diplôme du secondaire", defaultValue: "Baccalauréat" },
+        { label: "Diplôme avant interruption", defaultValue: "Licence" },
+        { label: "Libellé diplôme", defaultValue: "Titre du diplôme exemple" },
+        { label: "Type de saisie diplôme", defaultValue: "Automatique" },
+        { label: "Libellé spécialité", defaultValue: "Spécialité exemple" },
+        { label: "Type de saisie spécialité", defaultValue: "Manuelle" },
+        { label: "Mode codage", defaultValue: "Mode de codage exemple" },
+        { label: "Validation", defaultValue: "Validé" },
+        { label: "Code", defaultValue: "Code exemple" },
+        { label: "Modalité nomenclature", defaultValue: "Modalité nomenclature exemple" }
+    ];
 
-    const handleEdit = () => {
-        setEditable(!editable);
-    };
-
-    return (
-        <Box>
-            <Typography color="primary" mb={4} variant="h6" gutterBottom>
-                Nouveau Diplôme
-            </Typography>
-            <Grid container spacing={2}>
-                <Grid item xs={12} sm={6}>
-                    <TextField
-                        fullWidth
-                        label="Type formation"
-                        defaultValue="Type de formation exemple"
-                        variant="outlined"
-                        InputProps={{
-                            readOnly: !editable
-                        }}
-                    />
-                </Grid>
-                <Grid item xs={12} sm={6}>
-                    <TextField
-                        fullWidth
-                        label="Année"
-                        defaultValue="2024"
-                        variant="outlined"
-                        InputProps={{
-                            readOnly: !editable
-                        }}
-                    />
-                </Grid>
-                <Grid item xs={12} sm={6}>
-                    <TextField
-                        fullWidth
-                        label="Niveau du diplôme"
-                        defaultValue="Niveau de diplôme exemple"
-                        variant="outlined"
-                        InputProps={{
-                            readOnly: !editable
-                        }}
-                    />
-                </Grid>
-                <Grid item xs={12} sm={6}>
-                    <TextField
-                        fullWidth
-                        label="Pays"
-                        defaultValue="France"
-                        variant="outlined"
-                        InputProps={{
-                            readOnly: !editable
-                        }}
-                    />
-                </Grid>
-                <Grid item xs={12} sm={6}>
-                    <TextField
-                        fullWidth
-                        label="Alternance"
-                        defaultValue="Oui"
-                        variant="outlined"
-                        InputProps={{
-                            readOnly: !editable
-                        }}
-                    />
-                </Grid>
-                <Grid item xs={12} sm={6}>
-                    <TextField
-                        fullWidth
-                        label="VAE"
-                        defaultValue="Non"
-                        variant="outlined"
-                        InputProps={{
-                            readOnly: !editable
-                        }}
-                    />
-                </Grid>
-                <Grid item xs={12} sm={6}>
-                    <TextField
-                        fullWidth
-                        label="Année 1ère interruption des études"
-                        defaultValue="2020"
-                        variant="outlined"
-                        InputProps={{
-                            readOnly: !editable
-                        }}
-                    />
-                </Grid>
-                <Grid item xs={12} sm={6}>
-                    <TextField
-                        fullWidth
-                        label="Diplôme du secondaire"
-                        defaultValue="Baccalauréat"
-                        variant="outlined"
-                        InputProps={{
-                            readOnly: !editable
-                        }}
-                    />
-                </Grid>
-                <Grid item xs={12} sm={6}>
-                    <TextField
-                        fullWidth
-                        label="Diplôme avant interruption"
-                        defaultValue="Licence"
-                        variant="outlined"
-                        InputProps={{
-                            readOnly: !editable
-                        }}
-                    />
-                </Grid>
-                <Grid item xs={12} sm={6}>
-                    <TextField
-                        fullWidth
-                        label="Libellé diplôme"
-                        defaultValue="Titre du diplôme exemple"
-                        variant="outlined"
-                        InputProps={{
-                            readOnly: !editable
-                        }}
-                    />
-                </Grid>
-                <Grid item xs={12} sm={6}>
-                    <TextField
-                        fullWidth
-                        label="Type de saisie diplôme"
-                        defaultValue="Automatique"
-                        variant="outlined"
-                        InputProps={{
-                            readOnly: !editable
-                        }}
-                    />
-                </Grid>
-                <Grid item xs={12} sm={6}>
-                    <TextField
-                        fullWidth
-                        label="Libellé spécialité"
-                        defaultValue="Spécialité exemple"
-                        variant="outlined"
-                        InputProps={{
-                            readOnly: !editable
-                        }}
-                    />
-                </Grid>
-                <Grid item xs={12} sm={6}>
-                    <TextField
-                        fullWidth
-                        label="Type de saisie spécialité"
-                        defaultValue="Manuelle"
-                        variant="outlined"
-                        InputProps={{
-                            readOnly: !editable
-                        }}
-                    />
-                </Grid>
-                <Grid item xs={12} sm={6}>
-                    <TextField
-                        fullWidth
-                        label="Mode codage"
-                        defaultValue="Mode de codage exemple"
-                        variant="outlined"
-                        InputProps={{
-                            readOnly: !editable
-                        }}
-                    />
-                </Grid>
-                <Grid item xs={12} sm={6}>
-                    <TextField
-                        fullWidth
-                        label="Validation"
-                        defaultValue="Validé"
-                        variant="outlined"
-                        InputProps={{
-                            readOnly: !editable
-                        }}
-                    />
-                </Grid>
-                <Grid item xs={12} sm={6}>
-                    <TextField
-                        fullWidth
-                        label="Code"
-                        defaultValue="Code exemple"
-                        variant="outlined"
-                        InputProps={{
-                            readOnly: !editable
-                        }}
-                    />
-                </Grid>
-                <Grid item xs={12} sm={6}>
-                    <TextField
-                        fullWidth
-                        label="Modalité nomenclature"
-                        defaultValue="Modalité nomenclature exemple"
-                        variant="outlined"
-                        InputProps={{
-                            readOnly: !editable
-                        }}
-                    />
-                </Grid>
-            </Grid>
-            <Box mt={2}>
-                <Button variant="contained" onClick={handleEdit}>
-                    {editable ? "Sauvegarder" : "Éditer"}
-                </Button>
-            </Box>
-        </Box>
-    );
+    return <FormSection title="Nouveau Diplôme" fields={fields} />;
 }
