@@ -15,8 +15,7 @@ const commonStyles = {
     margin: "50px auto",
     padding: "20px",
     boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
-    borderRadius: "10px",
-    backgroundColor: "#fff"
+    borderRadius: "10px"
 };
 
 const TabPanel = (props: { [x: string]: any; children: any; value: any; index: any }) => {
@@ -66,7 +65,6 @@ const SubTabs = ({
                         label={label}
                         sx={{
                             "&.Mui-selected": {
-                                backgroundColor: "#f0f0f0",
                                 borderRadius: "8px"
                             }
                         }}
@@ -140,7 +138,6 @@ const NestedTabs = () => {
                     label="Employeur principal"
                     sx={{
                         "&.Mui-selected": {
-                            backgroundColor: "#f0f0f0",
                             borderRadius: "8px"
                         }
                     }}
@@ -149,7 +146,6 @@ const NestedTabs = () => {
                     label="Employeur secondaire"
                     sx={{
                         "&.Mui-selected": {
-                            backgroundColor: "#f0f0f0",
                             borderRadius: "8px"
                         }
                     }}
@@ -158,7 +154,6 @@ const NestedTabs = () => {
                     label="Emploi antérieur"
                     sx={{
                         "&.Mui-selected": {
-                            backgroundColor: "#f0f0f0",
                             borderRadius: "8px"
                         }
                     }}
@@ -167,7 +162,6 @@ const NestedTabs = () => {
                     label="Professions des parents"
                     sx={{
                         "&.Mui-selected": {
-                            backgroundColor: "#f0f0f0",
                             borderRadius: "8px"
                         }
                     }}
