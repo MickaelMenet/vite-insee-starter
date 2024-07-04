@@ -1,7 +1,7 @@
 import { createFileRoute, useMatch } from "@tanstack/react-router";
 import { tableData } from "../../../../../../../src/data/dataDashboardEmploi";
 import PersonDetailsCard from "components/PersonDetailsCard";
-import NestedTabs from "components/NestedTabs";
+import NestedTabs from "components/contentTabs/NestedTabs";
 import ActionButtons from "components/ActionButtons";
 import { Box } from "@mui/material";
 

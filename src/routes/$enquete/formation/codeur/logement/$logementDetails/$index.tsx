@@ -1,7 +1,7 @@
 import { createFileRoute, useMatch } from "@tanstack/react-router";
 import { tableDataFormation } from "../../../../../../../src/data/dataDashboardFormation";
 import PersonDetailsCard from "../../../../../../components/PersonDetailsCard";
-import SimpleTabs from "components/SimpleTabs";
+import SimpleTabs from "components/contentTabs/SimpleTabs";
 
 const findPersonDetails = (logementId: string, index: number) => {
     const logement = tableDataFormation.find(entry => entry.noi === logementId);

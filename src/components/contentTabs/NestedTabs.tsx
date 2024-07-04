@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import { Tabs, Tab, Box, Typography } from "@mui/material";
-import EmployeurPrincipalContent from "./contentTabs/emploi/EmployeurPrincipalContent";
-import ProfessionPrincipaleContent from "./contentTabs/emploi/ProfessionPrincipaleContent";
-import ProfessionSecondaireContent from "./contentTabs/emploi/ProfessionSecondaireContent";
-import ActiviteSecondaireContent from "./contentTabs/emploi/ActiviteSecondaireContent";
-import ProfessionAnterieureContent from "./contentTabs/emploi/ProfessionAnterieureContent";
-import ActiviteAnterieureContent from "./contentTabs/emploi/ActiviteAnterieureContent";
-import ProfessionPereContent from "./contentTabs/emploi/ProfessionPereContent";
-import ProfessionMereContent from "./contentTabs/emploi/ProfessionMereContent";
+import EmployeurPrincipalContent from "./emploi/EmployeurPrincipalContent";
+import ProfessionPrincipaleContent from "./emploi/ProfessionPrincipaleContent";
+import ProfessionSecondaireContent from "./emploi/ProfessionSecondaireContent";
+import ActiviteSecondaireContent from "./emploi/ActiviteSecondaireContent";
+import ProfessionAnterieureContent from "./emploi/ProfessionAnterieureContent";
+import ActiviteAnterieureContent from "./emploi/ActiviteAnterieureContent";
+import ProfessionPereContent from "./emploi/ProfessionPereContent";
+import ProfessionMereContent from "./emploi/ProfessionMereContent";
 
 const commonStyles = {
     width: "100%",

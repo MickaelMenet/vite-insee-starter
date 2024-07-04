@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { Tabs, Tab, Box, Typography } from "@mui/material";
 
-import FormationRecenteContent from "./contentTabs/formation/FormationRecenteContent";
-import NouveauDiplomeContent from "./contentTabs/formation/NouveauDiplomeContent";
-import PlusHautDiplomeContent from "./contentTabs/formation/PlusHautDiplomeContent";
-import SpecialiteEuropeenneContent from "./contentTabs/formation/SpecialiteEuropeenneContent";
+import FormationRecenteContent from "./formation/FormationRecenteContent";
+import NouveauDiplomeContent from "./formation/NouveauDiplomeContent";
+import PlusHautDiplomeContent from "./formation/PlusHautDiplomeContent";
+import SpecialiteEuropeenneContent from "./formation/SpecialiteEuropeenneContent";
 
 const TabPanel = (props: { [x: string]: any; children: any; value: any; index: any }) => {
     const { children, value, index, ...other } = props;
