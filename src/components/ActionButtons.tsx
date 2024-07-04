@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, SetStateAction, Dispatch } from "react";
 import { Grid, Button, Box } from "@mui/material";
 import NotesIcon from "@mui/icons-material/Notes";
 import CommentIcon from "@mui/icons-material/Comment";
@@ -7,6 +7,7 @@ import CommentsModal from "./CommentsModal";
 import VariablesModal from "./VariablesModal";
 import GestionnairesCommentModal from "./GestionnairesCommentModal";
 import EnqueteurRemarksModal from "./EnqueteurRemarksModal";
+import { SelectChangeEvent } from "@mui/material";
 
 const commentsList = [
     "problème d'adressage (pas d'adresse, adresse pas assez précise, case du numéro de voie remplie avec un complément d'adresse...)",
@@ -23,7 +24,25 @@ const commentsList = [
     "commentaire libre"
 ];
 
-const ActionButtons = () => {
+const buttonStyle = {
+    borderRadius: "40px",
+    height: "50px",
+    width: "100%",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    padding: "10px 20px",
+    boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.1)",
+    transition: "transform 0.2s, box-shadow 0.2s",
+    "&:hover": {
+        transform: "scale(1.05)",
+        boxShadow: "0px 8px 15px rgba(0, 0, 0, 0.2)"
+    }
+};
+
+const toggleModal = (setter: Dispatch<SetStateAction<boolean>>) => () => setter(prev => !prev);
+
+const ActionButtons: React.FC = () => {
     const [commentsOpen, setCommentsOpen] = useState(false);
     const [variablesOpen, setVariablesOpen] = useState(false);
     const [gestionnairesCommentOpen, setGestionnairesCommentOpen] = useState(false);
@@ -31,68 +50,18 @@ const ActionButtons = () => {
     const [selectedComment, setSelectedComment] = useState("");
     const [customComment, setCustomComment] = useState("");
 
-    const buttonStyle = {
-        borderRadius: "40px",
-        height: "50px",
-        width: "100%",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        padding: "10px 20px",
-        boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.1)",
-        transition: "transform 0.2s, box-shadow 0.2s",
-        "&:hover": {
-            transform: "scale(1.05)",
-            boxShadow: "0px 8px 15px rgba(0, 0, 0, 0.2)"
-        }
-    };
-
-    const handleCommentsOpen = () => {
-        setCommentsOpen(true);
-    };
-
-    const handleCommentsClose = () => {
-        setCommentsOpen(false);
-    };
-
-    const handleVariablesOpen = () => {
-        setVariablesOpen(true);
-    };
-
-    const handleVariablesClose = () => {
-        setVariablesOpen(false);
-    };
-
-    const handleGestionnairesCommentOpen = () => {
-        setGestionnairesCommentOpen(true);
-    };
-
-    const handleGestionnairesCommentClose = () => {
-        setGestionnairesCommentOpen(false);
-    };
-
-    const handleEnqueteurRemarksOpen = () => {
-        setEnqueteurRemarksOpen(true);
-    };
-
-    const handleEnqueteurRemarksClose = () => {
-        setEnqueteurRemarksOpen(false);
-    };
-
-    const handleCommentChange = (event: { target: { value: React.SetStateAction<string> } }) => {
+    const handleCommentChange = (event: SelectChangeEvent<string>) =>
         setSelectedComment(event.target.value);
-    };
 
-    const handleCustomCommentChange = (event: { target: { value: React.SetStateAction<string> } }) => {
+    const handleCustomCommentChange = (event: React.ChangeEvent<HTMLInputElement>) =>
         setCustomComment(event.target.value);
-    };
 
     const handleSave = () => {
         console.log("Selected Comment:", selectedComment);
         if (selectedComment === "commentaire libre") {
             console.log("Custom Comment:", customComment);
         }
-        handleCommentsClose();
+        setCommentsOpen(false);
     };
 
     const handleGestionnairesCommentSave = (comment: string) => {
@@ -108,7 +77,7 @@ const ActionButtons = () => {
                         color="info"
                         sx={buttonStyle}
                         startIcon={<NotesIcon />}
-                        onClick={handleEnqueteurRemarksOpen}
+                        onClick={toggleModal(setEnqueteurRemarksOpen)}
                     >
                         Remarques
                     </Button>
@@ -119,7 +88,7 @@ const ActionButtons = () => {
                         color="info"
                         sx={buttonStyle}
                         startIcon={<CommentIcon />}
-                        onClick={handleCommentsOpen}
+                        onClick={toggleModal(setCommentsOpen)}
                     >
                         Commentaires
                     </Button>
@@ -130,7 +99,7 @@ const ActionButtons = () => {
                         color="info"
                         sx={buttonStyle}
                         startIcon={<CommentIcon />}
-                        onClick={handleVariablesOpen}
+                        onClick={toggleModal(setVariablesOpen)}
                     >
                         Variables
                     </Button>
@@ -141,7 +110,7 @@ const ActionButtons = () => {
                         color="info"
                         sx={buttonStyle}
                         startIcon={<AdminPanelSettingsIcon />}
-                        onClick={handleGestionnairesCommentOpen}
+                        onClick={toggleModal(setGestionnairesCommentOpen)}
                     >
                         Commentaires Gestionnaires
                     </Button>
@@ -150,7 +119,7 @@ const ActionButtons = () => {
 
             <CommentsModal
                 open={commentsOpen}
-                handleClose={handleCommentsClose}
+                handleClose={toggleModal(setCommentsOpen)}
                 selectedComment={selectedComment}
                 handleCommentChange={handleCommentChange}
                 customComment={customComment}
@@ -158,15 +127,15 @@ const ActionButtons = () => {
                 handleSave={handleSave}
                 commentsList={commentsList}
             />
-            <VariablesModal open={variablesOpen} handleClose={handleVariablesClose} />
+            <VariablesModal open={variablesOpen} handleClose={toggleModal(setVariablesOpen)} />
             <GestionnairesCommentModal
                 open={gestionnairesCommentOpen}
-                handleClose={handleGestionnairesCommentClose}
+                handleClose={toggleModal(setGestionnairesCommentOpen)}
                 handleSave={handleGestionnairesCommentSave}
             />
             <EnqueteurRemarksModal
                 open={enqueteurRemarksOpen}
-                handleClose={handleEnqueteurRemarksClose}
+                handleClose={toggleModal(setEnqueteurRemarksOpen)}
             />
         </Box>
     );
