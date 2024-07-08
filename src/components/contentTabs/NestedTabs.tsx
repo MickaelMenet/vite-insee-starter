@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, memo, useCallback } from "react";
 import { Tabs, Tab, Box, Typography } from "@mui/material";
 import EmployeurPrincipalContent from "./emploi/EmployeurPrincipalContent";
 import ProfessionPrincipaleContent from "./emploi/ProfessionPrincipaleContent";
@@ -18,71 +18,74 @@ const commonStyles = {
     borderRadius: "10px"
 };
 
-const TabPanel = (props: { [x: string]: any; children: any; value: any; index: any }) => {
-    const { children, value, index, ...other } = props;
-
-    return (
-        <div
-            role="tabpanel"
-            hidden={value !== index}
-            id={`simple-tabpanel-${index}`}
-            aria-labelledby={`simple-tab-${index}`}
-            {...other}
-            style={{ width: "100%" }}
-        >
-            {value === index && (
-                <Box p={3} sx={{ width: "100%", mt: 2 }}>
-                    <Typography>{children}</Typography>
-                </Box>
-            )}
-        </div>
-    );
-};
-
-const SubTabs = ({
-    value,
-    index,
-    subTabs,
-    handleSubChange
-}: {
+type TabPanelProps = {
+    children: React.ReactNode;
     value: number;
     index: number;
-    subTabs: any;
-    handleSubChange: any;
-}) => {
-    return (
-        <TabPanel value={value} index={index}>
-            <Tabs
-                value={subTabs.value}
-                onChange={handleSubChange}
-                aria-label="subtabs"
-                variant="scrollable"
-                scrollButtons="auto"
-            >
-                {subTabs.labels.map((label: string, idx: number) => (
-                    <Tab
-                        key={idx}
-                        label={label}
-                        sx={{
-                            "&.Mui-selected": {
-                                borderRadius: "8px"
-                            }
-                        }}
-                    />
-                ))}
-            </Tabs>
-            {subTabs.contents.map((ContentComponent: any, idx: any) => (
-                <TabPanel key={idx} value={subTabs.value} index={idx}>
-                    <ContentComponent />
-                </TabPanel>
-            ))}
-        </TabPanel>
-    );
 };
+
+const TabPanel = memo(({ children, value, index, ...other }: TabPanelProps) => (
+    <div
+        role="tabpanel"
+        hidden={value !== index}
+        id={`simple-tabpanel-${index}`}
+        aria-labelledby={`simple-tab-${index}`}
+        {...other}
+        style={{ width: "100%" }}
+    >
+        {value === index && (
+            <Box p={3} sx={{ width: "100%", mt: 2 }}>
+                <Typography>{children}</Typography>
+            </Box>
+        )}
+    </div>
+));
+
+type SubTabsProps = {
+    value: number;
+    index: number;
+    subTabs: SubTabType;
+    handleSubChange: (event: React.SyntheticEvent, newValue: number) => void;
+};
+
+type SubTabType = {
+    value: number;
+    labels: string[];
+    contents: React.ComponentType[];
+};
+
+const SubTabs = memo(({ value, index, subTabs, handleSubChange }: SubTabsProps) => (
+    <TabPanel value={value} index={index}>
+        <Tabs
+            value={subTabs.value}
+            onChange={handleSubChange}
+            aria-label="subtabs"
+            variant="scrollable"
+            scrollButtons="auto"
+        >
+            {subTabs.labels.map((label, idx) => (
+                <Tab
+                    key={idx}
+                    label={label}
+                    sx={{
+                        "&.Mui-selected": {
+                            borderRadius: "8px"
+                        }
+                    }}
+                />
+            ))}
+        </Tabs>
+        {subTabs.contents.map((ContentComponent, idx) => (
+            <TabPanel key={idx} value={subTabs.value} index={idx}>
+                <ContentComponent />
+            </TabPanel>
+        ))}
+    </TabPanel>
+));
 
 const NestedTabs = () => {
     const [mainTab, setMainTab] = useState(0);
-    const [subTabs, setSubTabs] = useState([
+    const [subTabs, setSubTabs] = useState<SubTabType[]>([
         {
             value: 0,
             labels: ["Employeur principal", "Profession principale"],
@@ -115,15 +118,20 @@ const NestedTabs = () => {
         }
     ]);
 
-    const handleMainChange = (_event: React.SyntheticEvent, newValue: number) => {
+    const handleMainChange = useCallback((_event: React.SyntheticEvent, newValue: number) => {
         setMainTab(newValue);
-    };
+    }, []);
 
-    const handleSubChange = (tabIndex: number) => (_event: any, newValue: number) => {
-        const newSubTabs = [...subTabs];
-        newSubTabs[tabIndex].value = newValue;
-        setSubTabs(newSubTabs);
-    };
+    const handleSubChange = useCallback(
+        (tabIndex: number) => (_event: React.SyntheticEvent, newValue: number) => {
+            setSubTabs(prevSubTabs => {
+                const newSubTabs = [...prevSubTabs];
+                newSubTabs[tabIndex] = { ...newSubTabs[tabIndex], value: newValue };
+                return newSubTabs;
+            });
+        },
+        []
+    );
 
     return (
         <Box sx={commonStyles}>
@@ -134,37 +142,12 @@ const NestedTabs = () => {
                 variant="scrollable"
                 scrollButtons="auto"
             >
-                <Tab
-                    label="Employeur principal"
-                    sx={{
-                        "&.Mui-selected": {
-                            borderRadius: "8px"
-                        }
-                    }}
-                />
-                <Tab
-                    label="Employeur secondaire"
-                    sx={{
-                        "&.Mui-selected": {
-                            borderRadius: "8px"
-                        }
-                    }}
-                />
-                <Tab
-                    label="Emploi antérieur"
-                    sx={{
-                        "&.Mui-selected": {
-                            borderRadius: "8px"
-                        }
-                    }}
-                />
+                <Tab label="Employeur principal" sx={{ "&.Mui-selected": { borderRadius: "8px" } }} />
+                <Tab label="Employeur secondaire" sx={{ "&.Mui-selected": { borderRadius: "8px" } }} />
+                <Tab label="Emploi antérieur" sx={{ "&.Mui-selected": { borderRadius: "8px" } }} />
                 <Tab
                     label="Professions des parents"
-                    sx={{
-                        "&.Mui-selected": {
-                            borderRadius: "8px"
-                        }
-                    }}
+                    sx={{ "&.Mui-selected": { borderRadius: "8px" } }}
                 />
             </Tabs>
             {subTabs.map((subTab, idx) => (
