@@ -1,14 +1,19 @@
-import React, { useState } from "react";
-import { Tabs, Tab, Box, Typography } from "@mui/material";
+import React, { useState, memo, SyntheticEvent } from "react";
+import { Tabs, Tab, Box } from "@mui/material";
 
 import FormationRecenteContent from "./formation/FormationRecenteContent";
 import NouveauDiplomeContent from "./formation/NouveauDiplomeContent";
 import PlusHautDiplomeContent from "./formation/PlusHautDiplomeContent";
 import SpecialiteEuropeenneContent from "./formation/SpecialiteEuropeenneContent";
 
-const TabPanel = (props: { [x: string]: any; children: any; value: any; index: any }) => {
-    const { children, value, index, ...other } = props;
+type TabPanelProps = {
+    children: React.ReactNode;
+    value: number;
+    index: number;
+    other?: any;
+};
 
+const TabPanel = memo(({ children, value, index, ...other }: TabPanelProps) => {
     return (
         <div
             role="tabpanel"
@@ -19,40 +24,39 @@ const TabPanel = (props: { [x: string]: any; children: any; value: any; index: a
         >
             {value === index && (
                 <Box p={3} sx={{ width: "100%", mt: 2 }}>
-                    <Typography>{children}</Typography>
+                    {children}
                 </Box>
             )}
         </div>
     );
-};
+});
+
+const tabDetails = [
+    { label: "Formation suivie récemment", content: <FormationRecenteContent /> },
+    { label: "Nouveau diplôme", content: <NouveauDiplomeContent /> },
+    { label: "Plus haut diplôme", content: <PlusHautDiplomeContent /> },
+    { label: "Spécialité européenne du diplôme", content: <SpecialiteEuropeenneContent /> }
+];
 
 const SimpleTabs = () => {
     const [mainTab, setMainTab] = useState(0);
 
-    const handleMainChange = (_event: React.SyntheticEvent, newValue: number) => {
+    const handleMainChange = (_event: SyntheticEvent, newValue: number) => {
         setMainTab(newValue);
     };
 
     return (
         <Box sx={{ width: "100%", marginTop: "50px" }}>
-            <Tabs value={mainTab} onChange={handleMainChange} aria-label="maintabs">
-                <Tab label="Formation suivie récemment" />
-                <Tab label="Nouveau diplôme" />
-                <Tab label="Plus haut diplôme" />
-                <Tab label="Spécialité européenne du diplôme" />
+            <Tabs value={mainTab} onChange={handleMainChange} aria-label="main tabs">
+                {tabDetails.map((tab, index) => (
+                    <Tab key={index} label={tab.label} />
+                ))}
             </Tabs>
-            <TabPanel value={mainTab} index={0}>
-                <FormationRecenteContent />
-            </TabPanel>
-            <TabPanel value={mainTab} index={1}>
-                <NouveauDiplomeContent />
-            </TabPanel>
-            <TabPanel value={mainTab} index={2}>
-                <PlusHautDiplomeContent />
-            </TabPanel>
-            <TabPanel value={mainTab} index={3}>
-                <SpecialiteEuropeenneContent />
-            </TabPanel>
+            {tabDetails.map((tab, index) => (
+                <TabPanel key={index} value={mainTab} index={index}>
+                    {tab.content}
+                </TabPanel>
+            ))}
         </Box>
     );
 };
