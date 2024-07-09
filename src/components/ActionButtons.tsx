@@ -5,8 +5,8 @@ import CommentIcon from "@mui/icons-material/Comment";
 import AdminPanelSettingsIcon from "@mui/icons-material/AdminPanelSettings";
 import CommentsModal from "./CommentsModal";
 import VariablesModal from "./VariablesModal";
-import GestionnairesCommentModal from "./GestionnairesCommentModal";
-import EnqueteurRemarksModal from "./EnqueteurRemarksModal";
+import GestionnairesCommentModal from "./modals/GestionnairesCommentModal";
+import EnqueteurRemarksModal from "./modals/EnqueteurRemarksModal";
 import { SelectChangeEvent } from "@mui/material";
 
 const commentsList = [
