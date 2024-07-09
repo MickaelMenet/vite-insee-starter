@@ -1,4 +1,4 @@
-import React, { useState, memo, SyntheticEvent } from "react";
+import { useState, memo, SyntheticEvent, ReactNode } from "react";
 import { Tabs, Tab, Box } from "@mui/material";
 
 import FormationRecenteContent from "./formation/FormationRecenteContent";
@@ -6,30 +6,28 @@ import NouveauDiplomeContent from "./formation/NouveauDiplomeContent";
 import PlusHautDiplomeContent from "./formation/PlusHautDiplomeContent";
 import SpecialiteEuropeenneContent from "./formation/SpecialiteEuropeenneContent";
 
-type TabPanelProps = {
-    children: React.ReactNode;
+interface TabPanelProps {
+    children: ReactNode;
     value: number;
     index: number;
     other?: any;
-};
+}
 
-const TabPanel = memo(({ children, value, index, ...other }: TabPanelProps) => {
-    return (
-        <div
-            role="tabpanel"
-            hidden={value !== index}
-            id={`simple-tabpanel-${index}`}
-            aria-labelledby={`simple-tab-${index}`}
-            {...other}
-        >
-            {value === index && (
-                <Box p={3} sx={{ width: "100%", mt: 2 }}>
-                    {children}
-                </Box>
-            )}
-        </div>
-    );
-});
+const TabPanel = memo(({ children, value, index, ...other }: TabPanelProps) => (
+    <div
+        role="tabpanel"
+        hidden={value !== index}
+        id={`simple-tabpanel-${index}`}
+        aria-labelledby={`simple-tab-${index}`}
+        {...other}
+    >
+        {value === index && (
+            <Box p={3} sx={{ width: "100%", mt: 2 }}>
+                {children}
+            </Box>
+        )}
+    </div>
+));
 
 const tabDetails = [
     { label: "Formation suivie récemment", content: <FormationRecenteContent /> },

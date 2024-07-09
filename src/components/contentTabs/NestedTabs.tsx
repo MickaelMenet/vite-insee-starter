@@ -84,54 +84,58 @@ const SubTabs = memo(({ value, index, subTabs, handleSubChange }: SubTabsProps) 
 ));
 
 const NestedTabs = () => {
-    const [mainTab, setMainTab] = useState(0);
-    const [subTabs, setSubTabs] = useState<SubTabType[]>([
-        {
-            value: 0,
-            labels: ["Employeur principal", "Profession principale"],
-            contents: [EmployeurPrincipalContent, ProfessionPrincipaleContent]
-        },
-        {
-            value: 0,
-            labels: ["Profession secondaire", "Activité secondaire"],
-            contents: [ProfessionSecondaireContent, ActiviteSecondaireContent]
-        },
-        {
-            value: 0,
-            labels: ["Profession antérieure", "Activité antérieure"],
-            contents: [ProfessionAnterieureContent, ActiviteAnterieureContent]
-        },
-        {
-            value: 0,
-            labels: [
-                "Profession du père",
-                "Profession du père 2",
-                "Profession de la mère",
-                "Profession de la mère 2"
-            ],
-            contents: [
-                ProfessionPereContent,
-                ProfessionPereContent,
-                ProfessionMereContent,
-                ProfessionMereContent
-            ]
-        }
-    ]);
+    const [state, setState] = useState({
+        mainTab: 0,
+        subTabs: [
+            {
+                value: 0,
+                labels: ["Employeur principal", "Profession principale"],
+                contents: [EmployeurPrincipalContent, ProfessionPrincipaleContent]
+            },
+            {
+                value: 0,
+                labels: ["Profession secondaire", "Activité secondaire"],
+                contents: [ProfessionSecondaireContent, ActiviteSecondaireContent]
+            },
+            {
+                value: 0,
+                labels: ["Profession antérieure", "Activité antérieure"],
+                contents: [ProfessionAnterieureContent, ActiviteAnterieureContent]
+            },
+            {
+                value: 0,
+                labels: [
+                    "Profession du père",
+                    "Profession du père 2",
+                    "Profession de la mère",
+                    "Profession de la mère 2"
+                ],
+                contents: [
+                    ProfessionPereContent,
+                    ProfessionPereContent,
+                    ProfessionMereContent,
+                    ProfessionMereContent
+                ]
+            }
+        ]
+    });
 
     const handleMainChange = useCallback((_event: React.SyntheticEvent, newValue: number) => {
-        setMainTab(newValue);
+        setState(prevState => ({ ...prevState, mainTab: newValue }));
     }, []);
 
     const handleSubChange = useCallback(
         (tabIndex: number) => (_event: React.SyntheticEvent, newValue: number) => {
-            setSubTabs(prevSubTabs => {
-                const newSubTabs = [...prevSubTabs];
+            setState(prevState => {
+                const newSubTabs = [...prevState.subTabs];
                 newSubTabs[tabIndex] = { ...newSubTabs[tabIndex], value: newValue };
-                return newSubTabs;
+                return { ...prevState, subTabs: newSubTabs };
             });
         },
         []
     );
+
+    const { mainTab, subTabs } = state;
 
     return (
         <Box sx={commonStyles}>
