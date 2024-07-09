@@ -1,28 +1,30 @@
-import { Card, CardContent, Typography, Box, Grid } from "@mui/material";
+import React, { memo } from "react";
+import { Card, CardContent, Typography, Box, Grid, useTheme } from "@mui/material";
 import { Person, Wc, Cake, Assignment, Business, Work, LocalActivity } from "@mui/icons-material";
 import { styles } from "./styles";
-import { useTheme } from "@mui/material/styles";
 
-const InfoRow = ({
-    icon: Icon,
-    label,
-    value,
-    color
-}: {
-    icon: React.ElementType;
-    label: string;
-    value: string;
-    color: string;
-}) => (
-    <Box display="flex" alignItems="center" style={styles.infoRow} p={0.5}>
-        <Icon style={{ ...styles.infoRowIcon, color }} />
-        <Typography variant="body2" style={{ ...styles.infoRowLabel, color }}>
-            {label}:
-        </Typography>
-        <Typography variant="body2" style={{ ...styles.infoRowValue, color }}>
-            {value}
-        </Typography>
-    </Box>
+const InfoRow = memo(
+    ({
+        icon: Icon,
+        label,
+        value,
+        color
+    }: {
+        icon: React.ElementType;
+        label: string;
+        value: string;
+        color: string;
+    }) => (
+        <Box display="flex" alignItems="center" style={styles.infoRow} p={0.5}>
+            <Icon style={{ ...styles.infoRowIcon, color }} />
+            <Typography variant="body2" style={{ ...styles.infoRowLabel, color }}>
+                {label}:
+            </Typography>
+            <Typography variant="body2" style={{ ...styles.infoRowValue, color }}>
+                {value}
+            </Typography>
+        </Box>
+    )
 );
 
 type PersonDetailsProps = {
@@ -42,32 +44,27 @@ type PersonDetailsProps = {
 
 const PersonDetails = ({ details, title, onClick }: PersonDetailsProps) => {
     const muiTheme = useTheme();
-    const handleMouseEnter = e => {
-        const bgCircle = e.currentTarget.querySelector(".bg-circle");
-        if (bgCircle) {
-            bgCircle.style.transform = "scale(10)";
-        }
-    };
-
-    const handleMouseLeave = e => {
-        const bgCircle = e.currentTarget.querySelector(".bg-circle");
-        if (bgCircle) {
-            bgCircle.style.transform = "scale(1)";
-        }
-    };
-
     const textColor =
         muiTheme.palette.mode === "dark" ? muiTheme.palette.common.black : muiTheme.palette.text.primary;
 
     return (
         <Grid item>
             <Card
-                style={{ ...styles.card, flexDirection: "row" }}
-                onMouseEnter={handleMouseEnter}
-                onMouseLeave={handleMouseLeave}
+                style={{ ...styles.card, flexDirection: "row", position: "relative" }}
+                onMouseEnter={e =>
+                    ((e.currentTarget.querySelector(".bg-circle") as HTMLDivElement).style.transform =
+                        "scale(10)")
+                }
+                onMouseLeave={e =>
+                    ((e.currentTarget.querySelector(".bg-circle") as HTMLDivElement).style.transform =
+                        "scale(1)")
+                }
                 onClick={onClick}
             >
-                <div className="bg-circle" style={styles.bgCircle}></div>
+                <Box
+                    className="bg-circle"
+                    style={{ ...styles.bgCircle, transition: "transform 0.3s ease-in-out" }}
+                ></Box>
                 <CardContent style={styles.cardContent}>
                     <Typography
                         variant="h6"
