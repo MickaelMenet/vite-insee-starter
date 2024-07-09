@@ -13,7 +13,7 @@ export default function EmployeurPrincipalContent() {
         { label: "Déclaré", defaultValue: "" },
         { label: "Nom/Raison sociale", defaultValue: "LA SECONDA STORIA" },
         { label: "Adresse", defaultValue: "150 AV JOSEPH KESSEL" },
-        { label: "Dep/Commune", defaultValue: "78/VOISINS-LE-BRETONNEUX" },
+        { label: "Dep/Commune", defaultValue: "78 VOISINS-LE-BRETONNEUX" },
         { label: "Siret", defaultValue: "" },
         { label: "Données identification SIRENE", defaultValue: "" }
     ];
