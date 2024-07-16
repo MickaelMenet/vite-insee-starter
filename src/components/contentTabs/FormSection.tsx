@@ -1,6 +1,7 @@
 import { useState, useCallback } from "react";
 import { Typography, Box, Grid, Button } from "@mui/material";
 import CustomTextField from "./CustomTextField";
+import { v4 as uuidv4 } from "uuid";
 
 interface Field {
     label: string;
@@ -25,8 +26,8 @@ const FormSection: React.FC<FormSectionProps> = ({ title, fields }) => {
                 {title}
             </Typography>
             <Grid container spacing={2}>
-                {fields.map((field, index) => (
-                    <Grid item xs={12} sm={6} key={index}>
+                {fields.map(field => (
+                    <Grid item xs={12} sm={6} key={uuidv4()}>
                         <CustomTextField
                             label={field.label}
                             defaultValue={field.defaultValue}
