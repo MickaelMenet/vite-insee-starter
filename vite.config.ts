@@ -16,5 +16,27 @@ export default defineConfig({
             declarationFile: ".env"
         }),
         TanStackRouterVite()
-    ]
+    ],
+    server: {
+        proxy: {
+            "/api": {
+                target: "https://sndil-codification-deterministe.developpement.insee.fr",
+                changeOrigin: true,
+                secure: false,
+                rewrite: path => path.replace(/^\/api/, ""),
+                onProxyReq: (proxyReq, req, res) => {
+                    proxyReq.setHeader("Accept", "application/json");
+                    proxyReq.setHeader("Content-Type", "application/json");
+                },
+                onProxyRes: (proxyRes, req, res) => {},
+                onError: (err, req, res) => {
+                    console.error("Proxy error:", err);
+                    res.writeHead(500, {
+                        "Content-Type": "text/plain"
+                    });
+                    res.end("Something went wrong. And we are reporting a custom error message.");
+                }
+            }
+        }
+    }
 });

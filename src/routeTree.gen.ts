@@ -13,6 +13,7 @@ import { createFileRoute } from '@tanstack/react-router'
 // Import Routes
 
 import { Route as rootRoute } from './routes/__root'
+import { Route as PcsImport } from './routes/pcs'
 import { Route as AccountImport } from './routes/account'
 import { Route as EnqueteFormationExpertDashboardImport } from './routes/$enquete/formation/expert/dashboard'
 import { Route as EnqueteFormationCodeurDashboardImport } from './routes/$enquete/formation/codeur/dashboard'
@@ -38,6 +39,11 @@ const MuiLazyRoute = MuiLazyImport.update({
   path: '/mui',
   getParentRoute: () => rootRoute,
 } as any).lazy(() => import('./routes/mui.lazy').then((d) => d.Route))
+
+const PcsRoute = PcsImport.update({
+  path: '/pcs',
+  getParentRoute: () => rootRoute,
+} as any)
 
 const AccountRoute = AccountImport.update({
   path: '/account',
@@ -139,6 +145,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AccountImport
       parentRoute: typeof rootRoute
     }
+    '/pcs': {
+      id: '/pcs'
+      path: '/pcs'
+      fullPath: '/pcs'
+      preLoaderRoute: typeof PcsImport
+      parentRoute: typeof rootRoute
+    }
     '/mui': {
       id: '/mui'
       path: '/mui'
@@ -238,6 +251,7 @@ declare module '@tanstack/react-router' {
 export const routeTree = rootRoute.addChildren({
   IndexLazyRoute,
   AccountRoute,
+  PcsRoute,
   MuiLazyRoute,
   EnqueteEmploiCodeurDashboardRoute,
   EnqueteEmploiExpertDashboardRoute,
