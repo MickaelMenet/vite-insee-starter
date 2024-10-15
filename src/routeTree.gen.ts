@@ -13,8 +13,10 @@ import { createFileRoute } from '@tanstack/react-router'
 // Import Routes
 
 import { Route as rootRoute } from './routes/__root'
+import { Route as PropertiesImport } from './routes/properties'
 import { Route as PcsImport } from './routes/pcs'
 import { Route as FabImport } from './routes/fab'
+import { Route as DynamicImport } from './routes/dynamic'
 import { Route as AccountImport } from './routes/account'
 import { Route as EnqueteFormationExpertDashboardImport } from './routes/$enquete/formation/expert/dashboard'
 import { Route as EnqueteFormationCodeurDashboardImport } from './routes/$enquete/formation/codeur/dashboard'
@@ -41,6 +43,11 @@ const MuiLazyRoute = MuiLazyImport.update({
   getParentRoute: () => rootRoute,
 } as any).lazy(() => import('./routes/mui.lazy').then((d) => d.Route))
 
+const PropertiesRoute = PropertiesImport.update({
+  path: '/properties',
+  getParentRoute: () => rootRoute,
+} as any)
+
 const PcsRoute = PcsImport.update({
   path: '/pcs',
   getParentRoute: () => rootRoute,
@@ -48,6 +55,11 @@ const PcsRoute = PcsImport.update({
 
 const FabRoute = FabImport.update({
   path: '/fab',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const DynamicRoute = DynamicImport.update({
+  path: '/dynamic',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -151,6 +163,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AccountImport
       parentRoute: typeof rootRoute
     }
+    '/dynamic': {
+      id: '/dynamic'
+      path: '/dynamic'
+      fullPath: '/dynamic'
+      preLoaderRoute: typeof DynamicImport
+      parentRoute: typeof rootRoute
+    }
     '/fab': {
       id: '/fab'
       path: '/fab'
@@ -163,6 +182,13 @@ declare module '@tanstack/react-router' {
       path: '/pcs'
       fullPath: '/pcs'
       preLoaderRoute: typeof PcsImport
+      parentRoute: typeof rootRoute
+    }
+    '/properties': {
+      id: '/properties'
+      path: '/properties'
+      fullPath: '/properties'
+      preLoaderRoute: typeof PropertiesImport
       parentRoute: typeof rootRoute
     }
     '/mui': {
@@ -264,8 +290,10 @@ declare module '@tanstack/react-router' {
 export const routeTree = rootRoute.addChildren({
   IndexLazyRoute,
   AccountRoute,
+  DynamicRoute,
   FabRoute,
   PcsRoute,
+  PropertiesRoute,
   MuiLazyRoute,
   EnqueteEmploiCodeurDashboardRoute,
   EnqueteEmploiExpertDashboardRoute,

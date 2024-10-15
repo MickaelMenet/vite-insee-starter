@@ -4,6 +4,7 @@ import { declareComponentKeys, useTranslation } from "i18n";
 import { tss } from "tss";
 import { ChoosePlatform } from "components/ChoosePlatform";
 import { fr } from "@codegouvfr/react-dsfr";
+import DynamicForm from "components/DynamicForm";
 
 export const Route = createLazyFileRoute("/")({
     component: Index
