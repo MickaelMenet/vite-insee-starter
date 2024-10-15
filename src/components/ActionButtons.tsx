@@ -1,5 +1,5 @@
-import React, { useState, SetStateAction, Dispatch } from "react";
-import { Grid, Button, Box } from "@mui/material";
+import React, { useState, SetStateAction, Dispatch, useCallback } from "react";
+import { Grid, Button, Box, SelectChangeEvent } from "@mui/material";
 import NotesIcon from "@mui/icons-material/Notes";
 import CommentIcon from "@mui/icons-material/Comment";
 import AdminPanelSettingsIcon from "@mui/icons-material/AdminPanelSettings";
@@ -7,7 +7,6 @@ import CommentsModal from "./modals/CommentsModal";
 import VariablesModal from "./modals/VariablesModal";
 import GestionnairesCommentModal from "./modals/GestionnairesCommentModal";
 import EnqueteurRemarksModal from "./modals/EnqueteurRemarksModal";
-import { SelectChangeEvent } from "@mui/material";
 
 const commentsList = [
     "problème d'adressage (pas d'adresse, adresse pas assez précise, case du numéro de voie remplie avec un complément d'adresse...)",
@@ -40,8 +39,6 @@ const buttonStyle = {
     }
 };
 
-const toggleModal = (setter: Dispatch<SetStateAction<boolean>>) => () => setter(prev => !prev);
-
 const ActionButtons: React.FC = () => {
     const [commentsOpen, setCommentsOpen] = useState(false);
     const [variablesOpen, setVariablesOpen] = useState(false);
@@ -50,93 +47,101 @@ const ActionButtons: React.FC = () => {
     const [selectedComment, setSelectedComment] = useState("");
     const [customComment, setCustomComment] = useState("");
 
-    const handleCommentChange = (event: SelectChangeEvent<string>) =>
-        setSelectedComment(event.target.value);
+    const toggleModal = useCallback(
+        (setter: Dispatch<SetStateAction<boolean>>) => () => setter(prev => !prev),
+        []
+    );
 
-    const handleCustomCommentChange = (event: React.ChangeEvent<HTMLInputElement>) =>
-        setCustomComment(event.target.value);
+    const handleCommentChange = useCallback(
+        (event: SelectChangeEvent<string>) => setSelectedComment(event.target.value),
+        []
+    );
 
-    const handleSave = () => {
-        console.log("Selected Comment:", selectedComment);
+    const handleCustomCommentChange = useCallback(
+        (event: React.ChangeEvent<HTMLInputElement>) => setCustomComment(event.target.value),
+        []
+    );
+
+    const handleSave = useCallback(() => {
         if (selectedComment === "commentaire libre") {
             console.log("Custom Comment:", customComment);
         }
         setCommentsOpen(false);
-    };
+    }, [selectedComment, customComment]);
 
-    const handleGestionnairesCommentSave = (comment: string) => {
+    const handleGestionnairesCommentSave = useCallback((comment: string) => {
         console.log("Gestionnaire Comment:", comment);
-    };
+    }, []);
+
+    const buttons = [
+        {
+            label: "Remarques",
+            icon: <NotesIcon />,
+            onClick: toggleModal(setEnqueteurRemarksOpen),
+            modal: (
+                <EnqueteurRemarksModal
+                    open={enqueteurRemarksOpen}
+                    handleClose={toggleModal(setEnqueteurRemarksOpen)}
+                />
+            )
+        },
+        {
+            label: "Commentaires",
+            icon: <CommentIcon />,
+            onClick: toggleModal(setCommentsOpen),
+            modal: (
+                <CommentsModal
+                    open={commentsOpen}
+                    handleClose={toggleModal(setCommentsOpen)}
+                    selectedComment={selectedComment}
+                    handleCommentChange={handleCommentChange}
+                    customComment={customComment}
+                    handleCustomCommentChange={handleCustomCommentChange}
+                    handleSave={handleSave}
+                    commentsList={commentsList}
+                />
+            )
+        },
+        {
+            label: "Variables",
+            icon: <CommentIcon />,
+            onClick: toggleModal(setVariablesOpen),
+            modal: <VariablesModal open={variablesOpen} handleClose={toggleModal(setVariablesOpen)} />
+        },
+        {
+            label: "Commentaires Gestionnaires",
+            icon: <AdminPanelSettingsIcon />,
+            onClick: toggleModal(setGestionnairesCommentOpen),
+            modal: (
+                <GestionnairesCommentModal
+                    open={gestionnairesCommentOpen}
+                    handleClose={toggleModal(setGestionnairesCommentOpen)}
+                    handleSave={handleGestionnairesCommentSave}
+                />
+            )
+        }
+    ];
 
     return (
         <Box display="flex" justifyContent="center" marginTop="30px">
             <Grid container spacing={3} sx={{ maxWidth: "100%", padding: "0 5px" }}>
-                <Grid item xs={12} sm={6} md={3}>
-                    <Button
-                        variant="contained"
-                        color="info"
-                        sx={buttonStyle}
-                        startIcon={<NotesIcon />}
-                        onClick={toggleModal(setEnqueteurRemarksOpen)}
-                    >
-                        Remarques
-                    </Button>
-                </Grid>
-                <Grid item xs={12} sm={6} md={3}>
-                    <Button
-                        variant="contained"
-                        color="info"
-                        sx={buttonStyle}
-                        startIcon={<CommentIcon />}
-                        onClick={toggleModal(setCommentsOpen)}
-                    >
-                        Commentaires
-                    </Button>
-                </Grid>
-                <Grid item xs={12} sm={6} md={3}>
-                    <Button
-                        variant="contained"
-                        color="info"
-                        sx={buttonStyle}
-                        startIcon={<CommentIcon />}
-                        onClick={toggleModal(setVariablesOpen)}
-                    >
-                        Variables
-                    </Button>
-                </Grid>
-                <Grid item xs={12} sm={6} md={3}>
-                    <Button
-                        variant="contained"
-                        color="info"
-                        sx={buttonStyle}
-                        startIcon={<AdminPanelSettingsIcon />}
-                        onClick={toggleModal(setGestionnairesCommentOpen)}
-                    >
-                        Commentaires Gestionnaires
-                    </Button>
-                </Grid>
+                {buttons.map((btn, index) => (
+                    <Grid item xs={12} sm={6} md={3} key={index}>
+                        <Button
+                            variant="contained"
+                            color="info"
+                            sx={buttonStyle}
+                            startIcon={btn.icon}
+                            onClick={btn.onClick}
+                        >
+                            {btn.label}
+                        </Button>
+                    </Grid>
+                ))}
             </Grid>
-
-            <CommentsModal
-                open={commentsOpen}
-                handleClose={toggleModal(setCommentsOpen)}
-                selectedComment={selectedComment}
-                handleCommentChange={handleCommentChange}
-                customComment={customComment}
-                handleCustomCommentChange={handleCustomCommentChange}
-                handleSave={handleSave}
-                commentsList={commentsList}
-            />
-            <VariablesModal open={variablesOpen} handleClose={toggleModal(setVariablesOpen)} />
-            <GestionnairesCommentModal
-                open={gestionnairesCommentOpen}
-                handleClose={toggleModal(setGestionnairesCommentOpen)}
-                handleSave={handleGestionnairesCommentSave}
-            />
-            <EnqueteurRemarksModal
-                open={enqueteurRemarksOpen}
-                handleClose={toggleModal(setEnqueteurRemarksOpen)}
-            />
+            {buttons.map((btn, index) => (
+                <React.Fragment key={index}>{btn.modal}</React.Fragment>
+            ))}
         </Box>
     );
 };

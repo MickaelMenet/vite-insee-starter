@@ -14,6 +14,7 @@ import { createFileRoute } from '@tanstack/react-router'
 
 import { Route as rootRoute } from './routes/__root'
 import { Route as PcsImport } from './routes/pcs'
+import { Route as FabImport } from './routes/fab'
 import { Route as AccountImport } from './routes/account'
 import { Route as EnqueteFormationExpertDashboardImport } from './routes/$enquete/formation/expert/dashboard'
 import { Route as EnqueteFormationCodeurDashboardImport } from './routes/$enquete/formation/codeur/dashboard'
@@ -42,6 +43,11 @@ const MuiLazyRoute = MuiLazyImport.update({
 
 const PcsRoute = PcsImport.update({
   path: '/pcs',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const FabRoute = FabImport.update({
+  path: '/fab',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -143,6 +149,13 @@ declare module '@tanstack/react-router' {
       path: '/account'
       fullPath: '/account'
       preLoaderRoute: typeof AccountImport
+      parentRoute: typeof rootRoute
+    }
+    '/fab': {
+      id: '/fab'
+      path: '/fab'
+      fullPath: '/fab'
+      preLoaderRoute: typeof FabImport
       parentRoute: typeof rootRoute
     }
     '/pcs': {
@@ -251,6 +264,7 @@ declare module '@tanstack/react-router' {
 export const routeTree = rootRoute.addChildren({
   IndexLazyRoute,
   AccountRoute,
+  FabRoute,
   PcsRoute,
   MuiLazyRoute,
   EnqueteEmploiCodeurDashboardRoute,
