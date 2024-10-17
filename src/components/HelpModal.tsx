@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import { FC } from "react";
 import Dialog from "@mui/material/Dialog";
 import DialogTitle from "@mui/material/DialogTitle";
 import DialogContent from "@mui/material/DialogContent";
@@ -72,17 +72,21 @@ interface HelpModalProps {
 }
 
 const components: Components = {
-    h1: ({ node, ...props }) => <Typography variant="h4" gutterBottom {...props} />,
-    h2: ({ node, ...props }) => <Typography variant="h5" gutterBottom {...props} />,
-    h3: ({ node, ...props }) => <Typography variant="h6" gutterBottom {...props} />,
-    p: ({ node, ...props }) => <Typography variant="body1" paragraph {...props} />,
+    h1: ({ node, ...props }) => <Typography variant="h4" component="h1" gutterBottom {...props} />,
+    h2: ({ node, ...props }) => <Typography variant="h5" component="h2" gutterBottom {...props} />,
+    h3: ({ node, ...props }) => <Typography variant="h6" component="h3" gutterBottom {...props} />,
+    p: ({ node, ...props }) => <Typography variant="body1" component="p" paragraph {...props} />,
     strong: ({ node, ...props }) => (
         <Typography component="span" sx={{ fontWeight: "bold" }} {...props} />
     ),
     em: ({ node, ...props }) => <Typography component="span" sx={{ fontStyle: "italic" }} {...props} />,
-    ul: ({ node, ordered, ...props }) => <List sx={{ listStyleType: "disc", pl: 4 }} {...props} />,
-    ol: ({ node, ordered, ...props }) => <List sx={{ listStyleType: "decimal", pl: 4 }} {...props} />,
-    li: ({ node, ordered, ...props }) => <ListItem sx={{ display: "list-item", py: 0 }} {...props} />,
+    ul: ({ node, ...props }) => <List component="ul" sx={{ listStyleType: "disc", pl: 4 }} {...props} />,
+    ol: ({ node, ...props }) => (
+        <List component="ol" sx={{ listStyleType: "decimal", pl: 4 }} {...props} />
+    ),
+    li: ({ node, ...props }) => (
+        <ListItem component="li" sx={{ display: "list-item", py: 0 }} {...props} />
+    ),
     code: ({ node, inline, className, children, ...props }) => (
         <Box
             component="code"
@@ -114,7 +118,6 @@ const components: Components = {
             {...props}
         />
     )
-    // Ajoutez d'autres composants si nécessaire
 };
 
 const HelpModal: FC<HelpModalProps> = ({ open, handleClose }) => {

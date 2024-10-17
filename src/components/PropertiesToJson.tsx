@@ -1,17 +1,26 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import properties from "properties-parser";
 import { TextDecoder } from "text-encoding";
 
-const PropertiesToJson = () => {
-    const [jsonResult, setJsonResult] = useState(null);
-    const [error, setError] = useState(null);
+interface JsonResult {
+    [key: string]: string;
+}
 
-    const handleFileUpload = event => {
-        const file = event.target.files[0];
+const PropertiesToJson: React.FC = () => {
+    const [jsonResult, setJsonResult] = useState<JsonResult | null>(null);
+    const [error, setError] = useState<string | null>(null);
+
+    const handleFileUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const file = event.target.files?.[0];
+        if (!file) {
+            setError("Aucun fichier sélectionné");
+            return;
+        }
+
         const reader = new FileReader();
 
-        reader.onload = e => {
-            const arrayBuffer = e.target.result;
+        reader.onload = (e: ProgressEvent<FileReader>) => {
+            const arrayBuffer = e.target?.result as ArrayBuffer;
 
             const decoder = new TextDecoder("ISO-8859-1");
             const text = decoder.decode(arrayBuffer);
@@ -34,6 +43,8 @@ const PropertiesToJson = () => {
     };
 
     const downloadJson = () => {
+        if (!jsonResult) return;
+
         const dataStr =
             "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(jsonResult, null, 2));
         const downloadAnchorNode = document.createElement("a");
