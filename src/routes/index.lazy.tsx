@@ -1,30 +1,19 @@
 import { createLazyFileRoute } from "@tanstack/react-router";
-import { declareComponentKeys, useTranslation } from "i18n";
-// import { useOidc } from "oidc";
+import { declareComponentKeys } from "i18n";
 import { tss } from "tss";
 import { ChoosePlatform } from "components/ChoosePlatform";
 import { fr } from "@codegouvfr/react-dsfr";
-import DynamicForm from "components/DynamicForm";
 
 export const Route = createLazyFileRoute("/")({
     component: Index
 });
 
 function Index() {
-    // const { t } = useTranslation("Index");
-
-    // const { isUserLoggedIn, oidcTokens } = useOidc();
-
     const { classes } = useStyles();
 
     return (
         <div className={classes.root}>
             <div className={classes.content}>
-                {/* <h5>
-                    {t("welcome", {
-                        name: isUserLoggedIn ? oidcTokens.decodedIdToken.preferred_username : undefined
-                    })}
-                </h5> */}
                 <ChoosePlatform className={classes.choosePlatform} />
             </div>
         </div>

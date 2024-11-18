@@ -19,7 +19,6 @@ const SearchLevel: React.FC = () => {
     const [fileData, setFileData] = useState<string>("");
     const [errors, setErrors] = useState<{ levelCode: string }>({ levelCode: "" });
 
-    // Charger le fichier .fab pour les niveaux d'études lors du montage du composant
     useEffect(() => {
         fetch("/fichier_apprentissage_brut_niveau.fab")
             .then(response => response.text())
@@ -27,12 +26,10 @@ const SearchLevel: React.FC = () => {
             .catch(error => console.error("Erreur lors du chargement du fichier:", error));
     }, []);
 
-    // Validation des champs Code Niveau
     const validateFields = (): boolean => {
         let valid = true;
         const newErrors = { levelCode: "" };
 
-        // Validation Code Niveau: 5 chiffres maximum
         if (levelCode && !/^\d{1,5}$/.test(levelCode)) {
             newErrors.levelCode = "Le code niveau doit comporter jusqu’à 5 chiffres.";
             valid = false;
@@ -42,7 +39,6 @@ const SearchLevel: React.FC = () => {
         return valid;
     };
 
-    // Fonction pour rechercher des résultats en fonction des critères
     const handleSearch = (): void => {
         if (!fileData) {
             console.error("Fichier non chargé");
@@ -57,14 +53,12 @@ const SearchLevel: React.FC = () => {
         const filteredResults = lines.filter(line => {
             let match = true;
 
-            // Filtrer par libellé (exact ou partiel)
             if (searchTerm) {
                 const searchText = exactMatch ? `\\b${searchTerm}\\b` : searchTerm;
                 const regex = new RegExp(searchText, "i");
                 match = match && regex.test(line);
             }
 
-            // Filtrer par code niveau
             if (levelCode) {
                 match = match && line.includes(levelCode);
             }
@@ -75,18 +69,16 @@ const SearchLevel: React.FC = () => {
         setResults(filteredResults);
     };
 
-    // Réinitialiser les critères de recherche
     const handleReset = (): void => {
         setSearchTerm("");
         setLevelCode("");
         setExactMatch(false);
-        setResults([]); // Réinitialise les résultats
+        setResults([]);
         setErrors({ levelCode: "" });
     };
 
-    // Restreindre l'entrée dans le champ Code Niveau (chiffres uniquement)
     const handleLevelCodeChange = (e: ChangeEvent<HTMLInputElement>): void => {
-        const value = e.target.value.replace(/\D/g, ""); // Retirer les lettres
+        const value = e.target.value.replace(/\D/g, "");
         setLevelCode(value);
     };
 
@@ -109,7 +101,6 @@ const SearchLevel: React.FC = () => {
                     />
                 </Grid>
 
-                {/* Case à cocher pour les mots entiers */}
                 <Grid item xs={12}>
                     <FormControlLabel
                         control={
@@ -119,7 +110,6 @@ const SearchLevel: React.FC = () => {
                     />
                 </Grid>
 
-                {/* Code niveau d'études */}
                 <Grid item xs={12}>
                     <TextField
                         fullWidth
@@ -133,7 +123,6 @@ const SearchLevel: React.FC = () => {
                     />
                 </Grid>
 
-                {/* Boutons alignés sur une même ligne */}
                 <Grid item xs={12}>
                     <Grid container justifyContent="space-between">
                         <Button
@@ -158,7 +147,6 @@ const SearchLevel: React.FC = () => {
                 </Grid>
             </Grid>
 
-            {/* Résultats de recherche */}
             <Box mt={4}>
                 {results.length > 0 ? (
                     <ul>

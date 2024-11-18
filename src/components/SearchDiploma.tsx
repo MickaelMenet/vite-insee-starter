@@ -23,7 +23,6 @@ const SearchDiploma: React.FC = () => {
         nsfCode: ""
     });
 
-    // Charger le fichier .fab lors du montage du composant
     useEffect(() => {
         fetch("/fichier_apprentissage_brut.fab")
             .then(response => response.text())
@@ -31,18 +30,15 @@ const SearchDiploma: React.FC = () => {
             .catch(error => console.error("Erreur lors du chargement du fichier:", error));
     }, []);
 
-    // Validation des champs Code Diplôme et Code NSF
     const validateFields = (): boolean => {
         let valid = true;
         const newErrors = { diplomaCode: "", nsfCode: "" };
 
-        // Validation Code Diplôme: 4 chiffres maximum
         if (diplomaCode && !/^\d{1,4}$/.test(diplomaCode)) {
             newErrors.diplomaCode = "Le code diplôme doit comporter jusqu’à 4 chiffres.";
             valid = false;
         }
 
-        // Validation Code NSF: 3 chiffres suivis d'une lettre maximum
         if (nsfCode && !/^\d{1,3}[a-zA-Z]?$/.test(nsfCode)) {
             newErrors.nsfCode = "Le code NSF doit comporter jusqu’à 3 chiffres suivis d'une lettre.";
             valid = false;
@@ -52,7 +48,6 @@ const SearchDiploma: React.FC = () => {
         return valid;
     };
 
-    // Fonction pour rechercher des résultats en fonction des critères
     const handleSearch = (): void => {
         if (!fileData) {
             console.error("Fichier non chargé");
@@ -87,24 +82,22 @@ const SearchDiploma: React.FC = () => {
         setResults(filteredResults);
     };
 
-    // Réinitialiser les critères de recherche
     const handleReset = (): void => {
         setSearchTerm("");
         setDiplomaCode("");
         setNsfCode("");
         setExactMatch(false);
-        setResults([]); // Réinitialise les résultats
+        setResults([]);
         setErrors({ diplomaCode: "", nsfCode: "" });
     };
 
-    // Restreindre l'entrée dans les champs (chiffres uniquement)
     const handleDiplomaCodeChange = (e: ChangeEvent<HTMLInputElement>): void => {
-        const value = e.target.value.replace(/\D/g, ""); // Retirer les lettres
+        const value = e.target.value.replace(/\D/g, "");
         setDiplomaCode(value);
     };
 
     const handleNsfCodeChange = (e: ChangeEvent<HTMLInputElement>): void => {
-        const value = e.target.value.replace(/[^0-9a-zA-Z]/g, ""); // Retirer les caractères non alphanumériques
+        const value = e.target.value.replace(/[^0-9a-zA-Z]/g, "");
         setNsfCode(value);
     };
 
@@ -115,7 +108,6 @@ const SearchDiploma: React.FC = () => {
             </Typography>
 
             <Grid container spacing={2}>
-                {/* Libellé de diplôme */}
                 <Grid item xs={12}>
                     <TextField
                         fullWidth
@@ -127,7 +119,6 @@ const SearchDiploma: React.FC = () => {
                     />
                 </Grid>
 
-                {/* Case à cocher pour les mots entiers */}
                 <Grid item xs={12}>
                     <FormControlLabel
                         control={
@@ -137,7 +128,6 @@ const SearchDiploma: React.FC = () => {
                     />
                 </Grid>
 
-                {/* Code diplôme */}
                 <Grid item xs={6}>
                     <TextField
                         fullWidth
@@ -151,7 +141,6 @@ const SearchDiploma: React.FC = () => {
                     />
                 </Grid>
 
-                {/* Code NSF */}
                 <Grid item xs={6}>
                     <TextField
                         fullWidth
@@ -164,8 +153,6 @@ const SearchDiploma: React.FC = () => {
                         helperText={errors.nsfCode}
                     />
                 </Grid>
-
-                {/* Boutons */}
                 <Grid item xs={12} sm={6}>
                     <Button variant="contained" color="primary" fullWidth onClick={handleSearch}>
                         Rechercher
@@ -173,21 +160,18 @@ const SearchDiploma: React.FC = () => {
                 </Grid>
 
                 <Grid item xs={12} sm={6}>
-                    {/* Bouton avec une couleur vive et une icône de réinitialisation */}
                     <Button
                         variant="contained"
-                        color="error" // Utilisation d'une couleur rouge pour plus de visibilité
+                        color="error"
                         fullWidth
                         onClick={handleReset}
-                        startIcon={<ReplayIcon />} // Ajout d'une icône de réinitialisation
-                        sx={{ fontWeight: "bold" }} // Rendre le texte du bouton plus visible
+                        startIcon={<ReplayIcon />}
+                        sx={{ fontWeight: "bold" }}
                     >
                         Effacer les critères
                     </Button>
                 </Grid>
             </Grid>
-
-            {/* Résultats de recherche */}
             <Box mt={4}>
                 {results.length > 0 ? (
                     <ul>
